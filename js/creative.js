@@ -72,51 +72,48 @@
     }
   });
 
-  // Ajax workgroup, please dont follow
+  // Ajax workground, please dont follow
     $(function() {
-
-        $("#search").click(function() {
-            $.ajax({
-                type: "GET",
-                url: "title.php?number= " + $("#keyword").val(),
-                dataType: "json",
-                success: function(data) {
-                    if (data.number) {
-                        $("#searchResult").html(
-                            '[找到員工] 員工編號：' +data.number + ', 姓名：' + data.name + ', 性別：' + data.sex
-                        );
-                    } else {
-                        $("#searchResult").html(data.msg);
-                    }
-                },
-                error: function(jqXHR) {
-                    alert("發生錯誤: " + jqXHR.status);
-                }
-            })
-        })
         /*
-        $("#testButton").click(function() {
-            $.ajax({
-                type: "GET",
-                url: "title.php?id= " + '01'.val(),
-                dataType: "json",
-                success: function (data) {
-                    if (data.number) {
-                        $("#testJson").html(
-                            '123'
-                        );
-                    } else {
-                        $("#testJson").html(
-                        'what'
-                    );
-                    }
-                },
-                error: function (jqXHR) {
-                    alert("發生錯誤: " + jqXHR.status);
-                }
-            })
-        })
-*/
+                $("#search").click(function() {
+                    $.ajax({
+                        type: "GET",
+                        url: "title.php?number= " + $("#keyword").val(),
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.number) {
+                                $("#searchResult").html(
+                                    '[找到員工] 員工編號：' +data.number + ', 姓名：' + data.name + ', 性別：' + data.sex
+                                );
+                            } else {
+                                $("#searchResult").html(data.msg);
+                            }
+                        },
+                        error: function(jqXHR) {
+                            alert("發生錯誤: " + jqXHR.status);
+                        }
+                    })
+                })
+                        */
+                    $.ajax({
+                        type: "GET",
+                        context:"../template/index.html",
+                        url: "title.php",
+                        dataType: "json",
+                        success: function (data) {
+                            $("#name").html(data.name);
+                            $("#nationality").html(data.name);
+                            $("#gender").html(data.gender);
+                            $("#platform").html(data.platform);
+                            $("#category").html(data.name);
+                            $("#follower").html(data.name);
+                        },
+                        error: function (jqXHR) {
+                            alert("發生錯誤: " + jqXHR.status);
+                        }
+                    })
+
+
 
     /*$("#save").click(function() {
             $.ajax({
