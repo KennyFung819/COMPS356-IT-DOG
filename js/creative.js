@@ -14,20 +14,7 @@
       }
     }
   });
-    //search bar
 
-    $(function(){
-
-        $(".input-group-btn .dropdown-menu li a").click(function(){
-
-            var selText = $(this).html();
-
-            //working version - for multiple buttons //
-            $(this).parents('.input-group-btn').find('.btn-search').html(selText);
-
-        });
-
-    });
   // Closes responsive menu when a scroll trigger link is clicked
   $('.js-scroll-trigger').click(function() {
     $('.navbar-collapse').collapse('hide');
@@ -84,5 +71,76 @@
       tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
     }
   });
+
+  // Ajax workgroup, please dont follow
+    $(function() {
+
+        $("#search").click(function() {
+            $.ajax({
+                type: "GET",
+                url: "title.php?number= " + $("#keyword").val(),
+                dataType: "json",
+                success: function(data) {
+                    if (data.number) {
+                        $("#searchResult").html(
+                            '[找到員工] 員工編號：' +data.number + ', 姓名：' + data.name + ', 性別：' + data.sex
+                        );
+                    } else {
+                        $("#searchResult").html(data.msg);
+                    }
+                },
+                error: function(jqXHR) {
+                    alert("發生錯誤: " + jqXHR.status);
+                }
+            })
+        })
+        /*
+        $("#testButton").click(function() {
+            $.ajax({
+                type: "GET",
+                url: "title.php?id= " + '01'.val(),
+                dataType: "json",
+                success: function (data) {
+                    if (data.number) {
+                        $("#testJson").html(
+                            '123'
+                        );
+                    } else {
+                        $("#testJson").html(
+                        'what'
+                    );
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("發生錯誤: " + jqXHR.status);
+                }
+            })
+        })
+*/
+
+    /*$("#save").click(function() {
+            $.ajax({
+                type: "POST",
+                url: "service.php",
+                dataType: "json",
+                data: {
+                    name: $("#staffName").val(),
+                    number: $("#staffNumber").val(),
+                    sex: $("#staffSex").val()
+                },
+                success: function(data) {
+                    if (data.name) {
+                        $("#createResult").html('員工：' + data.name + '，儲存成功！');
+                    } else {
+                        $("#createResult").html(data.msg);
+                    }
+                },
+                error: function(jqXHR) {
+                    alert("發生錯誤: " + jqXHR.status);
+                }
+            })
+        })
+        */
+    });
 
 })(jQuery); // End of use strict

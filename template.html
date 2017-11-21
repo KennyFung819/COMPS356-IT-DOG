@@ -98,9 +98,40 @@
               <div class="biology-box">
                   <h3 class="mb-3">Name: </h3>
                   <p class="text-muted mb-0">Nationality:</p>
-                  <p class="text-muted mb-0">Platform</p>
-                  <p class="text-muted mb-0">Category</p>
-                  <p class="text-muted mb-0">Follower Count:Across all platform</p>
+
+                  <!-- personal test-->
+                  <p class="text-muted" id="testJson"></p>
+                  <button id="testButton">testing</button>
+
+                  <!--test other code-->
+                  <div>
+                  <h1>查詢員工</h1>
+                  <label for="keyword">請輸入員工編號：1020501</label>
+                  <input type="text" id="keyword">
+
+                  <button id="search">查詢</button>
+                  <p id="searchResult"></p>
+
+                  <h1>新建員工</h1>
+                  <label for="staffNumber">請輸入員工編號：</label>
+                  <input type="text" id="staffNumber"><br>
+
+                  <label for="staffName">請輸入員工姓名：</label>
+                  <input type="text" id="staffName"><br>
+
+                  <label for="staffSex">請輸入員工性別：</label>
+                  <select id="staffSex">
+                      <option value="男">男</option>
+                      <option value="女">女</option>
+                  </select><br>
+                  </div>
+
+
+                  <button id="save">保存</button>
+                  <p id="createResult"></p>
+                  <p class="text-muted mb-0">Platform:</p>
+                  <p class="text-muted mb-0">Category:</p>
+                  <p class="text-muted mb-0">Follower Count(Across all platform):</p>
               </div>
           </div>
           <div class="col-lg-6 col-md-12 text-center">
@@ -134,8 +165,10 @@
           <div class="row">
               <div class="col-lg-6 col-md-12 text-lg-left">
                   <div class="biology-box">
-                      <p class="text-muted mb-0">Paragraph here:</p>
+                      <p class="text-muted mb-0">Paragraph here: </p>
+                      <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
 
+                      <button>Get External Content</button>
                       <p class="text-muted mb-0">Paragraph here:</p>
 
                       <p class="text-muted mb-0">Paragraph here:</p>
@@ -247,7 +280,7 @@
   <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="js/creative.min.js"></script>
+  <script src="js/creative.js"></script>
 
 
 
