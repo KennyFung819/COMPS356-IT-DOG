@@ -1,10 +1,9 @@
 (function($) {
-// Ajax workground, please dont follow
-    $(function() {
+
         $.ajax({
             type: "GET",
-            context:"../template/index.html",
-            url: "title.php",
+            context:this,
+            url: "search.php",
             dataType: "json",
             success: function (data) {
                 $("#name").html(data.name);
@@ -19,5 +18,4 @@
             }
         })
 
-    });
 })(jQuery); // End of use strict
