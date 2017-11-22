@@ -1,42 +1,53 @@
 <?php
 /*
-link to the database and retrieve data, which will be stored in the $_SESSION constant along with
+connect to the database and retrieve data, which will be stored in the $_SESSION constant along with
 the redirection back to the previous page.
-we can set the result as a buffer in the server with the static data type
-then when we want to read information in other pages we can retrieve data from
+we can set the result as a buffer in the server using the variable of $_SEESION.
+then when users query data using the same keywords and keywords type, we can retrieve data from
 this buffer quickly
 */
 
 session_start();
 if(!isset($_GET['keywordsInput'])||!isset($_GET['keywordsType'])){
-  //redirect the page if the input from users are invalid
+    //redirect the page if the inputs from users are invalid
+  header("Location:searchingResult.php");
+  die;
 }
 
-if(!isset($_SESSION['keywordsInput'])){
+  //set the $_SESSION variables
+if(isset($_GET['page']))
+  $_SESSION['page']=(int)$_GET['page'];
+else
+  $_SESSION['page']=1;
+
+if(!isset($_SESSION['keywordsInput'])||!isset($_SESSION['keywordsType'])){
   $_SESSION['keywordsInput']=$_GET['keywordsInput'];
+  $_SESSION['keywordsType']=$_GET['keywordsType'];
 }
-else if($_SESSION['keywordsInput']==$_GET['keywordsInput']&&isset($_SESSION['resultBuffer'])){
-  $_SESSION['result']=processHtml($_SESSION['resultBuffer'],$_GET['page']);
+
+//if the keywords are the same and the buffer is not null, retrive the data from the buffer
+if($_SESSION['keywordsInput']==$_GET['keywordsInput']&&isset($_SESSION['resultBuffer'])){
+  //retrive data from the buffer
+  $_SESSION['result']=processHtml($_SESSION['resultBuffer'],$_SESSION['page']);
   //redirection
+  header("Location:searchingResult.php");
+  die;
 }
-else{
 
-}
-$keywordsString=processString($_GET['keywordsInput']);
-
-$_SESSION['resultBuffer']=makeConnection($keywordsString);
-$_SESSION['resultSet']=processHtml($resultSet,$_GET['page']);
-
+$keywordsArray=processString($_GET['keywordsInput']);
+$_SESSION['resultBuffer']=makeConnection($keywordsArray,$_SESSION['keywordsType']);
+$_SESSION['resultSet']=processHtml($resultSet,$_SESSION['page']);
+//redirection
+header("Location:searchingResult.php");
 
 function processString($keywords){
     //this function is used to split input string into separate words by regular expression
     //assume that the key words are separated by spaces(one or more)
     $pattern="/\s+/";
     $separatedWords=preg_split($pattern, $keywords);
-
     return $separatedwords;
 }
-function makeConnection($keywords){
+function makeConnection($keywords,$keywordsType){
     //make a connection and a query to database and return the result set
     $host='localhost';$user;$password;
     $conn=new mysqli($host,$user,$password);
@@ -44,9 +55,9 @@ function makeConnection($keywords){
         return null;
     //
     else{
-    $sql="select * from kol where ".$_GET['keywordsType'];
+    $sql="select * from kol where lower($keywordsType)";
     foreach ($keywords as $word)
-        $sql=$sql."like '$word' and";
+        $sql=$sql."like lower('$word') and";
     $sql=$sql." 1=1";
     $conn->query($sql);
     $result=$conn->store_result();
@@ -56,13 +67,11 @@ function makeConnection($keywords){
 }
 function processHtml(mysqli_result $resultSet,int $page){
   $html="";$temp="";
-  //set the default page of the result set
-  if(!isset($page))$page=1;
-  elseif ($page>$resultSet->num_rows/20+1||$page<1) {
-    $page=1;
-  }
+  //valify the value of page
+  if ($page>$resultSet->num_rows/20+1||$page<1) $page=1;
   $resultSet->data_seek(($page-1)*20);
   for($count=0;$count<20;$count++){
+    //add html tags into fetched record
     $temp=$resultSet->fetch_assoc();
     $name=$temp['name'];
     $picturePath=$temp['picturePath'];
@@ -76,5 +85,6 @@ function processHtml(mysqli_result $resultSet,int $page){
       <div>$description</div>
     </div>";
   }
+  return $html;
 }
 ?>

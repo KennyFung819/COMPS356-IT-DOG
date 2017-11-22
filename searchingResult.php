@@ -20,16 +20,23 @@ if(isset($_SESSION['keywords']))echo $_SESSION['keywords'];
 </form>
 <div id="result">
 <?php
-if(isset($_SESSION['resultSet'])){
-  $prossessResult=new mysqli_result();
-  $count=$prossessResult->num_rows/20+1;
-
-}
+if(isset($_SESSION['resultSet'])) echo $_SESSION['resultSet'];
 ?>
 </div>
 <div name="pages">
   <?php
-
+  //display hyperlinks for every page
+  if(isset($_SESSION['resultBuffer'])){
+    $keywordsInput=$_SESSION['keywordsInput'];
+    $keywordsType=$_SESSION['keywordsType'];
+    $pages=$_SESSION['resultBuffer']->num_rows/20+1;
+    for($count=1;$count<=$pages;$count++){
+      if($count==$_SESSION['page'])
+      echo $count;
+      else
+      echo "<a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=$count'>$count</a>";
+    }
+  }
    ?>
 </div>
 </body>
