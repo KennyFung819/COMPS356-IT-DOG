@@ -27,45 +27,85 @@
       <DataType>varchar(8)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="12" parent="7" name="intro">
+    <column id="12" parent="7" name="platform">
       <Position>4</Position>
-      <DataType>varchar(50)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="13" parent="7" name="platform">
-      <Position>5</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="14" parent="7" name="PRIMARY">
+    <column id="13" parent="7" name="follower">
+      <Position>5</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="14" parent="7" name="category">
+      <Position>6</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="7" name="img_url">
+      <Position>7</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="7" name="intro">
+      <Position>8</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="17" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="15" parent="8" name="ID">
+    <column id="18" parent="8" name="id">
       <Position>1</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="8" name="PID">
+    <column id="19" parent="8" name="pid">
       <Position>2</Position>
       <Comment>Connect to main KOL SQL</Comment>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="8" name="TYPE">
+    <column id="20" parent="8" name="type">
       <Position>3</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="18" parent="8" name="TEXT">
+    <column id="21" parent="8" name="context1">
       <Position>4</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="19" parent="8" name="PRIMARY">
+    <column id="22" parent="8" name="context2">
+      <Position>5</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="8" name="context3">
+      <Position>6</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="8" name="context4">
+      <Position>7</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="8" name="context5">
+      <Position>8</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="8" name="context6">
+      <Position>9</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="27" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

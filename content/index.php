@@ -84,8 +84,11 @@
 
 <?php
     include 'search.php';
+    include 'showContext.php';
     $target= new kol;
     $target->findTarget();
+    $targetData = new kolData;
+    $targetData->findTarget();
 ?>
 <section class="bg-dark text-white" id="introduction">
     <div class="container">
@@ -100,19 +103,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 text-lg-left">
+            <div class="col-lg-6 col-md-12 text-lg-left text-md-center">
                 <div class="biology-box">
-                    <p class="text-muted mb-0">Nationality: <?php $target->getName(); ?></p>
-                    <p class="text-muted mb-0">Gender:<?php $target->getGender(); ?></p>
-                    <p class="text-muted mb-0">Platform: <?php $target->getPlatform(); ?></p>
-                    <p class="text-muted mb-0">Category<?php $target->getCategory(); ?></p>
-                    <p class="text-muted mb-0">Follower Count:<span id="follower"></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Gender: <span class="text-primary"><?php $target->getGender(); ?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Platform: <span class="text-primary"><?php $target->getPlatform(); ?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Category: <span class="text-primary"><?php $target->getCategory(); ?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Follower Count:<span class="text-primary"><?php $target->getFollower();?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Basic Intro: <span class="text-primary"><?php $target->getIntro();?></span></p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 text-center">
-                <a class="biology-box" href="../img/portfolio/fullsize/1.jpg">
-                    <img class="img-fluid" src="../img/portfolio/thumbnails/1.jpg" alt="">
-                </a>
+                    <img class="img-fluid" src=<?php $target->getImg_url();?>>
             </div>
         </div>
     </div>
@@ -122,19 +123,19 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize">Section Sub-title</h2>
+                <h2 class="section-heading text-emphasize"><span class="text-primary"><?php $targetData->getType(); ?></h2>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 text-lg-left">
+            <div class="col-lg-12 col-md-12 text-lg-left">
                 <div class="biology-box">
-                    <p class="text-muted mb-0">Paragraph here: </p>
-                    <button>Get External Content</button>
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
-                    <p class="text-muted mb-0">Paragraph here:</p>
+                    <p class="text-muted mb-2" id="context1"><span class="text-muted"><?php $targetData->getContext1(); ?> </p>
+                    <p class="text-muted mb-2" id="context2"><span class="text-muted"><?php $targetData->getContext2(); ?> </p>
+                    <p class="text-muted mb-2" id="context3"><span class="text-muted"><?php $targetData->getContext3(); ?> </p>
+                    <p class="text-muted mb-2" id="context4"><span class="text-muted"><?php $targetData->getContext4(); ?> </p>
+                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext5(); ?> </p>
 
                 </div>
             </div>
