@@ -123,7 +123,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize"><span class="text-primary"><?php $targetData->getType(); ?></h2>
+                <h2 class="section-heading text-emphasize"><span class="text-primary"><?php $targetData->getType(0); ?></h2>
             </div>
         </div>
     </div>
@@ -131,12 +131,12 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-lg-left">
                 <div class="biology-box">
-                    <p class="text-muted mb-2" id="context1"><span class="text-muted"><?php $targetData->getContext1(); ?> </p>
-                    <p class="text-muted mb-2" id="context2"><span class="text-muted"><?php $targetData->getContext2(); ?> </p>
-                    <p class="text-muted mb-2" id="context3"><span class="text-muted"><?php $targetData->getContext3(); ?> </p>
-                    <p class="text-muted mb-2" id="context4"><span class="text-muted"><?php $targetData->getContext4(); ?> </p>
-                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext5(); ?> </p>
-
+                    <p class="text-muted mb-2" id="context1"><span class="text-muted"><?php $targetData->getContext1(0); ?> </p>
+                    <p class="text-muted mb-2" id="context2"><span class="text-muted"><?php $targetData->getContext2(0); ?> </p>
+                    <p class="text-muted mb-2" id="context3"><span class="text-muted"><?php $targetData->getContext3(0); ?> </p>
+                    <p class="text-muted mb-2" id="context4"><span class="text-muted"><?php $targetData->getContext4(0); ?> </p>
+                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext5(0); ?> </p>
+                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext6(0); ?> </p>
                 </div>
             </div>
         </div>
@@ -147,20 +147,20 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize">Section Sub-title</h2>
+                <h2 class="section-heading text-emphasize"><span class="text-primary"><?php $targetData->getType(1); ?></h2>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 text-lg-left">
+            <div class="col-lg-12 col-md-12 text-lg-left">
                 <div class="biology-box">
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
+                    <p class="text-muted mb-2" id="context1"><span class="text-muted"><?php $targetData->getContext1(1); ?> </p>
+                    <p class="text-muted mb-2" id="context2"><span class="text-muted"><?php $targetData->getContext2(1); ?> </p>
+                    <p class="text-muted mb-2" id="context3"><span class="text-muted"><?php $targetData->getContext3(1); ?> </p>
+                    <p class="text-muted mb-2" id="context4"><span class="text-muted"><?php $targetData->getContext4(1); ?> </p>
+                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext5(1); ?> </p>
+                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext6(1); ?> </p>
                 </div>
             </div>
         </div>
