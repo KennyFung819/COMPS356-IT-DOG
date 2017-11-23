@@ -89,41 +89,52 @@
     $target->findTarget();
     $targetData = new kolData;
     $targetData->findTarget();
+    $max = $targetData->getCount();
 ?>
+
+
 <section class="bg-dark text-white" id="introduction">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-emphasize"><?php $target->getName()?></h2>
+                <h2 class="section-heading text-emphasize"><?php $target->getName() ?></h2>
                 <hr class="my-5">
             </div>
         </div>
     </div>
-
-
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12 text-lg-left text-md-center">
                 <div class="biology-box">
-                    <p class="text-muted mb-lg-4 mb-md-2">Gender: <span class="text-primary"><?php $target->getGender(); ?></span></p>
-                    <p class="text-muted mb-lg-4 mb-md-2">Platform: <span class="text-primary"><?php $target->getPlatform(); ?></span></p>
-                    <p class="text-muted mb-lg-4 mb-md-2">Category: <span class="text-primary"><?php $target->getCategory(); ?></span></p>
-                    <p class="text-muted mb-lg-4 mb-md-2">Follower Count:<span class="text-primary"><?php $target->getFollower();?></span></p>
-                    <p class="text-muted mb-lg-4 mb-md-2">Basic Intro: <span class="text-primary"><?php $target->getIntro();?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Gender: <span
+                                class="text-primary"><?php $target->getGender(); ?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Platform: <span
+                                class="text-primary"><?php $target->getPlatform(); ?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Category: <span
+                                class="text-primary"><?php $target->getCategory(); ?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Follower Count:<span
+                                class="text-primary"><?php $target->getFollower(); ?></span></p>
+                    <p class="text-muted mb-lg-4 mb-md-2">Basic Intro: <span
+                                class="text-primary"><?php $target->getIntro(); ?></span></p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 text-center">
-                    <img class="img-fluid" src=<?php $target->getImg_url();?>>
+                <img class="img-fluid" src=<?php $target->getImg_url(); ?>>
             </div>
         </div>
     </div>
 </section>
 
-<section id="detail-1">
+
+    <?php
+    for ($sector=0; $sector<$max; $sector++){
+        ?>
+<section>
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize"><span class="text-primary"><?php $targetData->getType(0); ?></h2>
+                <h2 class="section-heading text-emphasize"><span
+                            class="text-primary"><?php $targetData->getType($sector); ?></h2>
             </div>
         </div>
     </div>
@@ -131,91 +142,51 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-lg-left">
                 <div class="biology-box">
-                    <p class="text-muted mb-2" id="context1"><span class="text-muted"><?php $targetData->getContext1(0); ?> </p>
-                    <p class="text-muted mb-2" id="context2"><span class="text-muted"><?php $targetData->getContext2(0); ?> </p>
-                    <p class="text-muted mb-2" id="context3"><span class="text-muted"><?php $targetData->getContext3(0); ?> </p>
-                    <p class="text-muted mb-2" id="context4"><span class="text-muted"><?php $targetData->getContext4(0); ?> </p>
-                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext5(0); ?> </p>
-                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext6(0); ?> </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="bg-light text-white" id="detail-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize"><span class="text-primary"><?php $targetData->getType(1); ?></h2>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 text-lg-left">
-                <div class="biology-box">
-                    <p class="text-muted mb-2" id="context1"><span class="text-muted"><?php $targetData->getContext1(1); ?> </p>
-                    <p class="text-muted mb-2" id="context2"><span class="text-muted"><?php $targetData->getContext2(1); ?> </p>
-                    <p class="text-muted mb-2" id="context3"><span class="text-muted"><?php $targetData->getContext3(1); ?> </p>
-                    <p class="text-muted mb-2" id="context4"><span class="text-muted"><?php $targetData->getContext4(1); ?> </p>
-                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext5(1); ?> </p>
-                    <p class="text-muted mb-2" id="context5"><span class="text-muted"><?php $targetData->getContext6(1); ?> </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="detail-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize">Section Sub-title</h2>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 text-lg-left">
-                <div class="biology-box">
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
-                    <p class="text-muted mb-0">Paragraph here:</p>
+                    <p class="text-muted mb-2" id="context1"><span
+                                class="text-muted"><?php $targetData->getContext1($sector); ?></p>
+                    <p class="text-muted mb-2" id="context2"><span
+                                class="text-muted"><?php $targetData->getContext2($sector); ?></p>
+                    <p class="text-muted mb-2" id="context3"><span
+                                class="text-muted"><?php $targetData->getContext3($sector); ?></p>
+                    <p class="text-muted mb-2" id="context4"><span
+                                class="text-muted"><?php $targetData->getContext4($sector); ?></p>
+                    <p class="text-muted mb-2" id="context5"><span
+                                class="text-muted"><?php $targetData->getContext5($sector); ?></p>
+                    <p class="text-muted mb-2" id="context5"><span
+                                class="text-muted"><?php $targetData->getContext6($sector); ?></p>
 
                 </div>
             </div>
         </div>
     </div>
 </section>
+    <?php
+    }
+    ?>
 
-<section class="bg-light text-white"id="detail-4">
+<section class="bg-dark">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize">Section Sub-title</h2>
+            <div class="col-lg-8 mx-auto text-center text-white">
+                <h2 class="section-headin ">Let's Get In Touch!</h2>
+                <hr class="my-4">
+                <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
             </div>
         </div>
-    </div>
-    <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 text-lg-left">
-                <div class="biology-box">
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
-                    <p class="text-muted mb-0">Paragraph here:</p>
-
-                </div>
+            <div class="col-lg-4 ml-auto text-center text-white">
+                <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+                <p>123-456-6789</p>
+            </div>
+            <div class="col-lg-4 mr-auto text-center text-white ">
+                <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+                <p>
+                    <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+                </p>
             </div>
         </div>
     </div>
 </section>
-
-
 
 
 <!-- Bootstrap core JavaScript -->

@@ -90,7 +90,7 @@ class kolData{
     }
 
     public function getCount(){
-        echo $this->indexCount;
+        return $this->indexCount;
     }
     public function setCount($count){
         $this->indexCount= $count;
