@@ -67,7 +67,7 @@ class kol{
         echo $this->img_url;
     }
     public function setImg_url($img_url){
-        $this->img_url="..".$img_url;
+        $this->img_url=$img_url;
     }
 
     //Setter & Getter for intro

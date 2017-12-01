@@ -82,17 +82,18 @@
         </div>
       </div>
     </nav>
+
     <header class="masthead text-center text-white d-flex">
       <div class="container my-auto">
         <div class="row">
           <div class="col-lg-10 mx-auto">
-            <h1 class="text-uppercase">
+            <h1 class="text-uppercase text-info">
               <strong>We got some of the most Famous <span class="text-emphasize">KOL</span> around the world here.</strong>
             </h1>
             <hr>
           </div>
           <div class="col-lg-8 mx-auto">
-            <p class="text-faded mb-5">"KOL" stand for Key opinion leader, usually describe people who have certain amount of social interference to other people.</p>
+            <p class="text-info  mb-5">"KOL" stand for Key opinion leader, usually describe people who have certain amount of social interference to other people.</p>
             <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
           </div>
         </div>
@@ -100,76 +101,83 @@
     </header>
 
 
+    <section id="kolDefinition">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">What is Key Opinion Leader?</h2>
+                    <hr class="my-4">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <i class="fa fa-4x fa-check text-primary mb-3 sr-icons"></i>
+                        <h3 class="mb-3">KOL is be trusted</h3>
+                        <p class="text-muted mb-0">Some people on the planet believe in him/her.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <i class="fa fa-4x fa-star text-primary mb-3 sr-icons"></i>
+                        <h3 class="mb-3">Star on their domain</h3>
+                        <p class="text-muted mb-0">They are usually good at where they are doing!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <i class="fa fa-4x fa-users text-primary mb-3 sr-icons"></i>
+                        <h3 class="mb-3">Well known</h3>
+                        <p class="text-muted mb-0">When you say their name, other know.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <i class="fa fa-4x  fa-lightbulb-o text-primary mb-3 sr-icons"></i>
+                        <h3 class="mb-3">Inspiration</h3>
+                        <p class="text-muted mb-0">They inspire other people!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <section class="bg-primary" id="about">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
-            <h2 class="section-heading text-white">We've got what you need!</h2>
+            <h2 class="section-heading text-white">We collected some of internet best talent and display them here!</h2>
             <hr class="light my-4">
-            <p class="text-faded mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+            <p class="text-faded mb-4">They are the most well-known person on the internet! You can find the you need infomation around here.</p>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Show me one!</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="services">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading">At Your Service</h2>
-            <hr class="my-4">
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fa fa-4x fa-diamond text-primary mb-3 sr-icons"></i>
-              <h3 class="mb-3">Sturdy Templates</h3>
-              <p class="text-muted mb-0">Our templates are updated regularly so they don't break.</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>
-              <h3 class="mb-3">Ready to Ship</h3>
-              <p class="text-muted mb-0">You can use this theme as is, or you can make changes!</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
-              <h3 class="mb-3">Up to Date</h3>
-              <p class="text-muted mb-0">We update dependencies to keep things fresh.</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i>
-              <h3 class="mb-3">Made with Love</h3>
-              <p class="text-muted mb-0">You have to make your websites with love these days!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!--
+    <?php
+    include 'content/search.php';
+    $target= new kol;
+    ?>
 
     <section class="p-0" id="portfolio">
       <div class="container-fluid p-0">
         <div class="row no-gutters popup-gallery">
+            <?php $target->searchTarget(01)?>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
+            <a class="portfolio-box" href=" <?php $target->getImg_url()?>">
+              <img class="img-fluid" src="<?php $target->getImg_url()?>" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
-                    Category
+                      <?php $target->getCategory()?>
                   </div>
                   <div class="project-name">
-                    Project Name
+                      <?php $target->getName()?>
                   </div>
                 </div>
               </div>
@@ -253,13 +261,7 @@
         </div>
       </div>
     </section>
-
-    <section class="bg-dark text-white">
-      <div class="container text-center">
-        <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-        <a class="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a>
-      </div>
-    </section>
+        -->
 
     <section id="contact">
       <div class="container">
@@ -267,7 +269,7 @@
           <div class="col-lg-8 mx-auto text-center">
             <h2 class="section-heading">Let's Get In Touch!</h2>
             <hr class="my-4">
-            <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+            <p class="mb-5">Contact us if u have something want to talk me</p>
           </div>
         </div>
         <div class="row">
@@ -278,7 +280,7 @@
           <div class="col-lg-4 mr-auto text-center">
             <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
             <p>
-              <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+              <a href="mailto:your-email@your-domain.com">feedback@myemail.com</a>
             </p>
           </div>
         </div>
