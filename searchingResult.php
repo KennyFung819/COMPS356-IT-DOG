@@ -36,10 +36,12 @@ if(isset($_SESSION['keywords']))echo $_SESSION['keywords'];
 ">
 <input type="submit" value="search">
 </form>
+<div class='container'>
 <div id="result">
 <?php
 if(isset($_SESSION['resultSet'])) echo $_SESSION['resultSet'];
 ?>
+</div>
 </div>
 <div name="pages">
   <?php
@@ -47,14 +49,20 @@ if(isset($_SESSION['resultSet'])) echo $_SESSION['resultSet'];
   if(isset($_SESSION['resultBuffer'])){
     $keywordsInput=$_SESSION['keywordsInput'];
     $keywordsType=$_SESSION['keywordsType'];
-    $pages=$_SESSION['resultBuffer']->num_rows/20+1;
-    echo "<ul>";
-    for($count=1;$count<=$pages;$count++){
+    if($_SESSION['page']>=5) $count=$_SESSION-4;
+    else $count=1;
+    $pages=(int)$_SESSION['resultBuffer']->num_rows/20+1;
+    echo "<ul class='pagination'>";
+    if($_SESSION['page']!=1)
+    echo "<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($_SEESION['page']-1)."'>previous page</a></li>";
+    for($times=0;$times<10||$count<=$pages;$count++,$times++){
       if($count==$_SESSION['page'])
-      echo $count;
+      echo "<li class='active'><a href='#'>$count</a></li>";
       else
       echo "<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=$count'>$count</a></li>";
     }
+    if($_SESSION['page']<$pages)
+    echo "<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($_SEESION['page']+1)."'>next page</a></li>";
     echo "</ul>";
   }
    ?>
