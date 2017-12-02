@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
       <meta charset="utf-8">
@@ -6,7 +6,7 @@
       <meta name="description" content="search kols who you want to know">
       <meta name="author" content="">
 
-      <title>KOLpedia - searching result Here</title>
+      <title>KOLpedia - search kol Here</title>
 
       <!-- Bootstrap core CSS -->
       <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,50 +23,102 @@
       <link href="css/creative.css" rel="stylesheet">
 </head>
 <body>
-  <<?php session_start() ?>
-<form action="searching.php">
-<select name="keywordsType">
-<option value="name" <?php if($_GET['keywordsType']=="name")echo "selected"; ?>>name</option>
-<option value="description">description</option>
-<option value=""> </option>
-</select>
-<input type="text" name="keywordsInput" placeholder="please enter the keywords you want to search" value="<?php
-if(isset($_SESSION['keywords']))echo $_SESSION['keywords'];
-?>
-">
-<input type="submit" value="search">
-</form>
+  <?php session_start() ?>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">KOLpedia</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#services">Random Page</a>
+          </li>
+          <li class="nav-item">
+            <form class="navbar-form navbar-search my-lg-0" action="searching.php">
+            <div class="input-group">
+            <div class="input-group-btn">
+            <select class="btn btn-primary" name="keywordsType">
+            <option class="btn" value="name" selected>Name</option>
+            <option class="btn" value="platform">Platform</option>
+            </select>
+          </div>
+            <input type="text" class="form-control" name="keywordsInput" value="">
+            <div class="input-group-btn">
+            <input type="submit" class="btn  btn-outline-success my-2 my-sm-0" value="search">
+            </div>
+          </div>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="bg-dark text-white" id="introduction">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                  <h2 class="section-heading text-emphasize">Search the KOL</h2>
+                  <hr class="my-5">
+                  <div class="col-lg-8 mx-auto">
+                  <p class="text-faded mb-5">"KOL" stand for Key opinion leader, usually describe people who have certain amount of social interference to other people.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+        <form class="navbar-form navbar-search my-lg-0" action="searching.php">
+        <div class="input-group">
+        <div class="input-group-btn">
+        <select class="btn btn-primary" name="keywordsType">
+        <option class="btn" value="name" <?php if (isset($_SESSION['keywordsType'])&&$_SESSION['keywordsType']=="name") {
+                echo "selected";
+            } ?>>Name</option>
+        <option class="btn" value="platform" <?php if (isset($_SESSION['keywordsType'])&&$_SESSION['keywordsType']=="platform") {
+                echo "selected";
+            } ?>>Platform</option>
+        </select>
+      </div>
+        <input type="text" class="form-control" name="keywordsInput" placeholder="please enter the keywords you want to search" value="
+        <?php
+        if (!empty($_SESSION['keywordsInput'])&&!ctype_space($_SESSION['keywordsInput'])) {
+            echo trim($_SESSION['keywordsInput']);
+        }
+        ?>
+        ">
+        <div class="input-group-btn">
+        <input type="submit" class="btn  btn-primary" value="search">
+        </div>
+      </div>
+        </form>
+  </div>
+  </section>
+  <section id="resultdetail">
 <div class='container'>
 <div id="result">
 <?php
-if(isset($_SESSION['resultSet'])) echo $_SESSION['resultSet'];
+if (isset($_SESSION['resultSet'])) {
+                echo $_SESSION['resultSet'];
+            }
 ?>
 </div>
 </div>
-<div name="pages">
+</section>
+<section id=page>
+  <div class="container">
+<div class="row">
   <?php
-  //display hyperlinks for every page
-  if(isset($_SESSION['resultBuffer'])){
-    $keywordsInput=$_SESSION['keywordsInput'];
-    $keywordsType=$_SESSION['keywordsType'];
-    if($_SESSION['page']>=5) $count=$_SESSION-4;
-    else $count=1;
-    $pages=(int)$_SESSION['resultBuffer']->num_rows/20+1;
-    echo "<ul class='pagination'>";
-    if($_SESSION['page']!=1)
-    echo "<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($_SEESION['page']-1)."'>previous page</a></li>";
-    for($times=0;$times<10||$count<=$pages;$count++,$times++){
-      if($count==$_SESSION['page'])
-      echo "<li class='active'><a href='#'>$count</a></li>";
-      else
-      echo "<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=$count'>$count</a></li>";
-    }
-    if($_SESSION['page']<$pages)
-    echo "<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($_SEESION['page']+1)."'>next page</a></li>";
-    echo "</ul>";
-  }
+if(isset($_SESSION['pages'])) {
+  echo $_SESSION['pages'];
+}
    ?>
 </div>
+</div>
+</section>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
