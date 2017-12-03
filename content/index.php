@@ -165,8 +165,8 @@
     ?>
 
 
-<section id="Comment">
-    <div class="container">
+<section id="Comment" class="bg-light">
+    <div class="container ">
         <div class="row">
             <div class="col-lg-12 text-lg-left">
                 <h2 class="section-heading text-emphasize">Comments</h2>
@@ -175,10 +175,18 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 text-lg-left">
+            <div class="col-lg-12 text-lg-left">
+                <div class="biology-box">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-lg-left">
                 <div class="biology-box">
                     <form>
-                        <textarea name="message" rows="5" cols="35"></textarea>
+                        <textarea name="message" rows="5" cols="80"></textarea>
                         <br>
                         <input type="submit" value="Submit">
                     </form>

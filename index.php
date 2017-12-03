@@ -88,7 +88,7 @@
         <div class="row">
           <div class="col-lg-10 mx-auto">
             <h1 class="text-uppercase text-info">
-              <strong>We got some of the most Famous <span class="text-emphasize">KOL</span> around the world here.</strong>
+              <strong>We got some of the world most Famous <span class="text-emphasize">KOL</span> here.</strong>
             </h1>
             <hr>
           </div>
@@ -122,7 +122,7 @@
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box mt-5 mx-auto">
                         <i class="fa fa-4x fa-star text-primary mb-3 sr-icons"></i>
-                        <h3 class="mb-3">Star on their domain</h3>
+                        <h3 class="mb-3">Star on their internet</h3>
                         <p class="text-muted mb-0">They are usually good at where they are doing!</p>
                     </div>
                 </div>
@@ -269,7 +269,7 @@
           <div class="col-lg-8 mx-auto text-center">
             <h2 class="section-heading">Let's Get In Touch!</h2>
             <hr class="my-4">
-            <p class="mb-5">Contact us if u have something want to talk me</p>
+            <p class="mb-5">Contact us if u have something want to say</p>
           </div>
         </div>
         <div class="row">
