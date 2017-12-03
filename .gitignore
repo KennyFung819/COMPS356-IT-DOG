@@ -6,3 +6,9 @@ bower_components
 js/jquery-3.2.1.slim.min.js
 fortest.html
 >>>>>>> searchingFunction-Raven
+testonly.html
+.project
+.settings/.jsdtscope
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+img/Kol/PewDiePie/01.jpg
+.settings/org.eclipse.wst.jsdt.ui.superType.name
