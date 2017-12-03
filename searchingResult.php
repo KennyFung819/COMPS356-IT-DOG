@@ -22,7 +22,7 @@
       <!-- Custom styles for this template -->
       <link href="css/creative.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-dark">
   <?php session_start() ?>
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
@@ -58,7 +58,7 @@
       </div>
     </div>
   </nav>
-  <section class="bg-dark text-white" id="introduction">
+  <section class="text-white" id="introduction">
       <div class="container">
           <div class="row">
               <div class="col-lg-12 text-center">

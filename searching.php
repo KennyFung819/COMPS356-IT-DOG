@@ -77,7 +77,7 @@ function makeConnection(Array $keywords, $keywordsType)
     //
     else {
       echo "connect successfully<br>";
-        $sql="select kolid,name,imgurl,intro from kol where ";
+        $sql="select id,name,img_url,intro from kol where ";
         foreach ($keywords as $word) {
             $sql=$sql."lower($keywordsType) like lower('%$word%') and ";
         }
@@ -112,7 +112,7 @@ function processHtml(mysqli_stmt $resultSet, int $page)
         $page=1;
     }
     $resultSet->data_seek(($page-1)*20);
-    $resultSet->bind_result($koId,$name,$picturePath,$intro);
+    $resultSet->bind_result($kolId,$name,$picturePath,$intro);
     for ($count=0;$count<20;$count++) {
         //add html tags into fetched record
         if(!$resultSet->fetch())
@@ -120,7 +120,7 @@ function processHtml(mysqli_stmt $resultSet, int $page)
         $html=$html."
       <div class='row'>
       <div class='col-lg-3 col-md-6 text-center'>
-      <a href=wiki.php?kolid='$kolId'>
+      <a href=content/index.php?targetKol=$kolId>
         <img src='$picturePath' alt='$name's picture' height='200'/>
         <h4>$name</h4></a>
       </div>
