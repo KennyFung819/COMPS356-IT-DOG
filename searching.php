@@ -108,7 +108,7 @@ function processHtml(mysqli_stmt $resultSet, int $page)
     $temp="";
 
     //valify the value of page
-    if ($page>$resultSet->num_rows/20+1||$page<1) {
+    if ($page>(int)($resultSet->num_rows/20)+1||$page<1) {
         $page=1;
     }
     $resultSet->data_seek(($page-1)*20);
