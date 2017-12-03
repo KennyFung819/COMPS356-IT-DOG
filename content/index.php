@@ -164,93 +164,25 @@
     }
     ?>
 
-
-<section id="Comment">
+<section class="bg-dark">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize">Comments</h2>
+            <div class="col-lg-8 mx-auto text-center text-white">
+                <h2 class="section-headin ">Let's Get In Touch!</h2>
+                <hr class="my-4">
+                <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
             </div>
         </div>
-    </div>
-    <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12 text-lg-left">
-                <div class="biology-box">
-                    <form>
-                        <textarea name="message" rows="5" cols="35"></textarea>
-                        <br>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
+            <div class="col-lg-4 ml-auto text-center text-white">
+                <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+                <p>123-456-6789</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="bg-dark text-white text-center"id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-lg-center">
-                <h2 class="section-heading text-emphasize">Want to know more about this KOL?</h2>
-                <p class="text-muted">You should check out their social media accounts.</p>
-                <hr>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x fa-youtube text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x fa-twitter text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x fa-twitch text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x  fa-facebook-official text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x fa-envelope-o text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x fa-instagram text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x fa-linkedin-square text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x  fa-snapchat-square text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
+            <div class="col-lg-4 mr-auto text-center text-white ">
+                <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+                <p>
+                    <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+                </p>
             </div>
         </div>
     </div>
