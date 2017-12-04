@@ -19,7 +19,7 @@ class kol{
     private $platform;
     private $category;
     private $follwer;
-    private $img_url;
+    private $img_folder;
     private $intro;
 
     //Setter & Getter for Name
@@ -63,11 +63,11 @@ class kol{
     }
 
     //Setter & Getter for img_url
-    public function getImg_url(){
-        echo $this->img_url;
+    public function getImg_folder(){
+        echo $this->img_folder;
     }
-    public function setImg_url($img_url){
-        $this->img_url=$img_url;
+    public function setImg_folder($img_folder){
+        $this->img_folder=$img_folder;
     }
 
     //Setter & Getter for intro
@@ -81,7 +81,7 @@ class kol{
     public function searchTarget($id) {
 
 
-        $target_temp = "SELECT name, gender,platform,category,img_url,follower,intro FROM kol WHERE id='$id'";
+        $target_temp = "SELECT name, gender,platform,category,img_folder,follower,intro FROM kol WHERE id='$id'";
 
         global $mysql;
 
@@ -95,7 +95,7 @@ class kol{
                 $this->setPlatform($row["platform"]);
                 $this->setCategory($row["category"]);
                 $this->setFollower($row["follower"]);
-                $this->setImg_url($row["img_url"]);
+                $this->setImg_folder($row["img_folder"]);
                 $this->setIntro($row["intro"]);
             }
         }

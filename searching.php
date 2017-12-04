@@ -64,12 +64,13 @@ function processString($keywords)
 function makeConnection(Array $keywords, $keywordsType)
 {
   echo "making connection<br>";
-    $host='localhost';
-    $user='ITDogs';
-    $password='password123';
-    $database='project';
+    $servername='localhost';
+    $username = 'root';
+    $password = 'Kappa819';
+    $db ='project';
+
     $port=3306;
-    $conn=new mysqli($host, $user, $password, $database, $port);
+    $conn=new mysqli($servername, $username, $password, $db, $port);
     if (mysqli_connect_errno()) {
       echo "cannot open the connection";
         return null;
@@ -77,7 +78,7 @@ function makeConnection(Array $keywords, $keywordsType)
     //
     else {
       echo "connect successfully<br>";
-        $sql="select id,name,img_url,intro from kol where ";
+        $sql="select id,name,img_folder,intro from kol where ";
         foreach ($keywords as $word) {
             $sql=$sql."lower($keywordsType) like lower('%$word%') and ";
         }
@@ -119,12 +120,12 @@ function processHtml(mysqli_stmt $resultSet, int $page)
           break;
         $html=$html."
       <div class='row'>
-      <div class='col-lg-3 col-md-6 text-center'>
+      <div class='col-lg-6 col-md-6 text-center'>
       <a href=content/index.php?targetKol=$kolId>
-        <img src='$picturePath' alt='$name's picture' height='200'/>
+        <img src='$picturePath/thumbnail.jpg' alt='$name&#39s picture' height='200'/>
         <h4>$name</h4></a>
       </div>
-      <div class='col-lg-9 col-md-6'><p class='text-muted mb-0'>$intro</p></div>
+      <div class='col-lg-6 col-md-6'><p class='text-muted mb-0'>$intro</p></div>
       </div>";
     }
     echo $html;

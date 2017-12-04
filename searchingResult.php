@@ -22,7 +22,7 @@
       <!-- Custom styles for this template -->
       <link href="css/creative.css" rel="stylesheet">
 </head>
-<body class="bg-dark">
+<body class="bg-white">
   <?php session_start() ?>
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">

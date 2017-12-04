@@ -43,41 +43,22 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#">Random Page</a>
             </li>
-            <li class="nav-item">
-              <form class="navbar-form navbar-search my-lg-0" role="search">
-                <div class="input-group">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn  btn-primary dropdown-toggle" data-toggle="dropdown">
-                      <span class="fa fa-table"></span>
-                      <span class="label-icon">Filter</span>
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li class="dropdown-item">
-                        <a class="nav-link" href="#">
-                          <span class="fa fa-user"></span>
-                          <span class="label-icon">User</span>
-                        </a>
-                      </li>
-                      <li class="divider"></li>
-                      <li class="dropdown-item">
-                        <a class="nav-link" href="#">
-                          <span class="fa fa-book"></span>
-                          <span class="label-icon">Organization</span>
-                        </a>
-                      </li>
-                      <li class="divider"></li>
-                    </ul>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Search">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn  btn-primary">
-                      <span class="fa fa-search"></span>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </li>
+              <li class="nav-item">
+                  <form class="navbar-form navbar-search my-lg-0" action="searching.php">
+                      <div class="input-group">
+                          <div class="input-group-btn">
+                              <select class="btn btn-primary" name="keywordsType">
+                                  <option class="btn btn-dark" value="name" selected>Name</option>
+                                  <option class="btn btn-dark" value="platform">Platform</option>
+                              </select>
+                          </div>
+                          <input type="text" class="form-control" name="keywordsInput" value="">
+                          <div class="input-group-btn">
+                              <input type="submit" class="btn  btn-success my-2 my-sm-0" value="search">
+                          </div>
+                      </div>
+                  </form>
+              </li>
           </ul>
         </div>
       </div>
@@ -160,7 +141,7 @@
 
     <!--
     <?php
-    include 'content/search.php';
+    include 'content/getKol.php';
     $target= new kol;
     ?>
 

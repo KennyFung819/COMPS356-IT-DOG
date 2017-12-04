@@ -14,8 +14,6 @@
     }
   }
 
-
-
   .navbar-nav {
     > li.nav-item {
        > a.nav-link,
@@ -45,10 +43,10 @@
     border-color: transparent;
     background-color: transparent;
     .navbar-brand {
-      color: fade-out($black, .3);
+      color: fade-out($primary, .3);
       &:focus,
       &:hover {
-        color: $black;
+        color: $primary;
       }
     }
     .navbar-nav > li.nav-item > a.nav-link {
@@ -56,9 +54,9 @@
     }
     .navbar-nav > li.nav-item > a.nav-link,
     .navbar-nav > li.nav-item > a.nav-link:focus {
-      color: fade-out($black, .3);
+      color: fade-out($primary, .3);
       &:hover {
-        color: $black;
+        color: $primary;
       }
     }
     &.navbar-shrink {

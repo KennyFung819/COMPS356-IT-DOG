@@ -30,49 +30,30 @@
 <!-- navbar for all webpage-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#">KOLpedia</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">KOLpedia</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#">Category</a>
+                    <a class="nav-link js-scroll-trigger" href="#about">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#">Random Page</a>
+                    <a class="nav-link js-scroll-trigger" href="#services">Random Page</a>
                 </li>
                 <li class="nav-item">
-                    <form class="form-inline my-lg-0" role="search">
+                    <form class="navbar-form navbar-search my-lg-0" action="../searching.php">
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <button type="button" class="btn  btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    <span class="fa fa-table"></span>
-                                    <span class="label-icon">Filter</span>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="dropdown-item">
-                                        <a class="nav-link" href="#">
-                                            <span class="fa fa-user"></span>
-                                            <span class="label-icon">User</span>
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li class="dropdown-item">
-                                        <a class="nav-link" href="#">
-                                            <span class="fa fa-book"></span>
-                                            <span class="label-icon">Organization</span>
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                </ul>
+                                <select class="btn btn-primary text-center" name="keywordsType">
+                                    <option class="btn" value="name" selected>Name</option>
+                                    <option class="btn" value="platform">Platform</option>
+                                </select>
                             </div>
-                            <input type="search" class="form-control mr-sm-2" aria-label="Search">
+                            <input type="text" class="form-control" name="keywordsInput" value="">
                             <div class="input-group-btn">
-                                <button type="button" class="btn  btn-outline-success my-2 my-sm-0" type="submit">
-                                    <span class="fa fa-search"></span>
-                                </button>
+                                <input type="submit" class="btn  btn-outline-success my-2 my-sm-0" value="search">
                             </div>
                         </div>
                     </form>
@@ -83,14 +64,16 @@
 </nav>
 
 <?php
-    include 'search.php';
+    include 'getKol.php';
     include 'showContext.php';
+    include 'showContext2.php';
     $target= new kol;
     $target->findTarget();
-    $targetData = new kolData;
-    $targetData->findTarget();
-    $max = $targetData->getCount();
+    $targetContent = new content();
+    $targetContent->findTarget();
+    $max = $targetContent->getMax();
 ?>
+
 
 
 <section class="bg-dark text-white" id="introduction">
@@ -119,82 +102,45 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 text-center">
-                <img class="img-fluid" src="../<?php $target->getImg_url(); ?>">
+                <img class="img-fluid" src="../<?php $target->getImg_folder(); ?>/01.jpg">
             </div>
         </div>
     </div>
 </section>
 
 
-    <?php
-    for ($sector=0; $sector<$max; $sector++){
-        ?>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize"><span
-                            class="text-primary"><?php $targetData->getType($sector); ?></h2>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 text-lg-left">
-                <div class="biology-box">
-                    <p class="text-muted mb-2" id="context1"><span
-                                class="text-muted"><?php $targetData->getContext1($sector); ?></p>
-                    <p class="text-muted mb-2" id="context2"><span
-                                class="text-muted"><?php $targetData->getContext2($sector); ?></p>
-                    <p class="text-muted mb-2" id="context3"><span
-                                class="text-muted"><?php $targetData->getContext3($sector); ?></p>
-                    <p class="text-muted mb-2" id="context4"><span
-                                class="text-muted"><?php $targetData->getContext4($sector); ?></p>
-                    <p class="text-muted mb-2" id="context5"><span
-                                class="text-muted"><?php $targetData->getContext5($sector); ?></p>
-                    <p class="text-muted mb-2" id="context5"><span
-                                class="text-muted"><?php $targetData->getContext6($sector); ?></p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-    <?php
-    }
+<?php
+for ($sector=1; $sector<=$max; $sector++){
     ?>
-
-
-<section id="Comment" class="bg-light">
-    <div class="container ">
-        <div class="row">
-            <div class="col-lg-12 text-lg-left">
-                <h2 class="section-heading text-emphasize">Comments</h2>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-lg-left">
-                <div class="biology-box">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-lg-left">
+                    <h2 class="section-heading text-emphasize"><span
+                                class="text-primary"><?php $targetContent->getSubTitle($sector); ?></h2>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-lg-left">
-                <div class="biology-box">
-                    <form>
-                        <textarea name="message" rows="5" cols="80"></textarea>
-                        <br>
-                        <input type="submit" value="Submit">
-                    </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 text-lg-left">
+                    <div class="biology-box">
+                        <p class="text-muted mb-2" id="Content"><span
+                                    class="text-muted"><?php $targetContent->getContent($sector); ?></p>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <?php
+}
+?>
+
+
+<?php
+include "comments.php";
+?>
 
 <section class="bg-dark text-white text-center"id="contact">
     <div class="container">
@@ -245,18 +191,6 @@
             <div class="col-lg-3 col-md-6 text-center">
                 <div class="service-box mt-5 mx-auto">
                     <a href="#"><i class="fa fa-4x fa-instagram text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x fa-linkedin-square text-primary mb-3 sr-icons"></i>
-                    <h3 class="mb-3">Insert thing here</h3></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <a href="#"><i class="fa fa-4x  fa-snapchat-square text-primary mb-3 sr-icons"></i>
                     <h3 class="mb-3">Insert thing here</h3></a>
                 </div>
             </div>
