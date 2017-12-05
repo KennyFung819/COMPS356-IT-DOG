@@ -26,7 +26,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             //give the value to the parameter and the statement is complete now
             $param_username = trim($_POST['username']);
-            
             //execute the prepared and complete statement
             if(mysqli_stmt_execute($stmt)){
                 //store result

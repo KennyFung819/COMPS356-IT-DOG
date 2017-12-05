@@ -7,6 +7,7 @@ $username="";
 $password="";
 $username_error="";
 $password_error="";
+$DB_user_password="";
  
 //process data when it is submitted
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -45,19 +46,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 //make sure the username exists. If so then verify the password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     //link the result to the statement
-					
-                    mysqli_stmt_bind_result($stmt, $username);
+                    mysqli_stmt_bind_result($stmt, $username, $DB_user_password);
                     if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password)){
+						if($DB_user_password==$password){
                             //if the password is correct, start a session and save the username to it
                             session_start();
                             $_SESSION['username'] = $username;      
                             header("location: mainpage.php");
+						}
                         } else{
                             //tell the user that the username and password do not match
                             $password_error = "The password is incorrect. Please try again";
                         }
-                    }
+                
                 }  else{
                     // Display an error message if username doesn't exist
                     $username_error = "No account found with that username.";
@@ -94,8 +95,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>    
             <div>
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" class="form-control">
-                <span><font color="red"><?php echo $password_error; ?></font></span>
+                <input type="password" name="password" id="password" value="">
+                <span><font color="red"><?php echo $password_error; echo $password; ?></font></span>
             </div>
             <div>
                 <input type="submit" value="Submit">
