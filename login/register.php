@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $username_error = "Cannot be blank";
     } else{
         //prepare a SELECT query for later use
-        $aQuery = "SELECT username FROM userinfo WHERE username = ?";
+        $aQuery = "SELECT name FROM user_data WHERE name = ?";
         //"stmt" stands for "statement"
         if($stmt = mysqli_prepare($connection, $aQuery)){
             //link an empty parameter to the incomplete statement
@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_error = "This username has already been taken.";
+                    $username_error ="This username has already been taken.";
                 } else{
                     $username = trim($_POST['username']);
                 }
@@ -69,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($username_error) && empty($password_error) && empty($confirm_password_error)){
         
         //prepare a INSERT query for later use
-        $aQuery2 = "INSERT INTO userinfo (username, password) VALUES (?, ?)";
+        $aQuery2 = "INSERT INTO user_data (name, password) VALUES (?, ?)";
         
         if($stmt = mysqli_prepare($connection, $aQuery2)){
             //link the empty parameters to the incomplete statement
@@ -96,38 +96,124 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	//disconnect $connection
     mysqli_close($connection);
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Login to KOLpedia</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/creative.css" rel="stylesheet">
+
 </head>
 <body>
-    <div>
-        <h2>Creating your account</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" value="">
-                <span><font color="red"><?php echo $username_error; ?></font></span>
-            </div>    
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" value="">
-                <span><font color="red"><?php echo $password_error; ?></font></span>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">KOLpedia</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">Category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#services">Random Page</a>
+                </li>
+                <li class="nav-item">
+                    <form class="navbar-form navbar-search my-lg-0" action="searching.php">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <select class="btn btn-primary text-center" name="keywordsType">
+                                    <option class="btn" value="name" selected>Name</option>
+                                    <option class="btn" value="platform">Platform</option>
+                                </select>
+                            </div>
+                            <input type="text" class="form-control" name="keywordsInput" value="">
+                            <div class="input-group-btn">
+                                <input type="submit" class="btn  btn-success my-2 my-sm-0" value="search">
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <a href="../login"><button class="btn btn-light text-info">LOGIN</button></a>
+                </li>
+            </ul>
+        </div>
+    </div></nav>
+<section id="registration">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading text-primary">Creating your account</h2>
+              <hr>
             </div>
-            <div>
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" name="confirm_password" id="confirm_password" value="">
-                <span><font color="red"><?php echo $confirm_password_error; ?></font></span>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                    <div class="form-group">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-sm-4" for="username">Username:</label>
+                            <input class="form-control col-lg-6 col-sm-8" type="text" name="username" id="username" value="">
+                            <span class="text-warning col-lg-3 col-sm-12"><?php echo $username_error; ?></span>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-sm-4" for="password">Password:</label>
+                            <input class="form-control col-lg-6 col-sm-8" type="password" name="password" id="password" value="">
+                            <span class="text-warning col-lg-2 col-sm-12"><?php echo $password_error; ?></span>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-sm-4" for="confirm_password">Confirm Password:</label>
+                            <input class="form-control col-lg-6 col-sm-8" type="password" name="confirm_password" id="confirm_password" value="">
+                            <span class="text-warning col-lg-2 col-sm-12"><?php echo $confirm_password_error; ?></span>
+                        </div>
+                    </div>
+                    <div>
+                        <input class="btn btn-success" type="submit" value="Submit">
+                        <input class="btn btn-secondary" type="reset" value="Reset">
+                    </div>
+                </form>
             </div>
-            <div>
-                <input type="submit" value="Submit">
-                <input type="reset" value="Reset">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p class=" text-muted text-center">Already have an account? <a href="login.php">Log in here</a>.</p>
             </div>
-            <p>Already have an account? <a href="login.php">Log in here</a>.</p>
-        </form>
-    </div>    
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="../vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/creative.js"></script>
 </body>
 </html>

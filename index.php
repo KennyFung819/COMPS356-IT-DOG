@@ -30,40 +30,43 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">KOLpedia</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Category</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#">Random Page</a>
-            </li>
-              <li class="nav-item">
-                  <form class="navbar-form navbar-search my-lg-0" action="searching.php">
-                      <div class="input-group">
-                          <div class="input-group-btn">
-                              <select class="btn btn-primary" name="keywordsType">
-                                  <option class="btn btn-dark" value="name" selected>Name</option>
-                                  <option class="btn btn-dark" value="platform">Platform</option>
-                              </select>
-                          </div>
-                          <input type="text" class="form-control" name="keywordsInput" value="">
-                          <div class="input-group-btn">
-                              <input type="submit" class="btn  btn-success my-2 my-sm-0" value="search">
-                          </div>
-                      </div>
-                  </form>
-              </li>
-          </ul>
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">KOLpedia</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#services">Random Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="navbar-form navbar-search my-lg-0" action="searching.php">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <select class="btn btn-primary text-center" name="keywordsType">
+                                        <option class="btn" value="name" selected>Name</option>
+                                        <option class="btn" value="platform">Platform</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="form-control" name="keywordsInput" value="">
+                                <div class="input-group-btn">
+                                    <input type="submit" class="btn  btn-success my-2 my-sm-0" value="search">
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login"><button class="btn btn-light text-info">LOGIN</button>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
-
+    <!-- header-->
     <header class="masthead text-center text-white d-flex">
       <div class="container my-auto">
         <div class="row">
@@ -80,8 +83,7 @@
         </div>
       </div>
     </header>
-
-
+    <!-- Intro-->
     <section id="kolDefinition">
         <div class="container">
             <div class="row">
@@ -124,8 +126,7 @@
             </div>
         </div>
     </section>
-
-
+    <!-- about us-->
     <section class="bg-primary" id="about">
       <div class="container">
         <div class="row">
@@ -243,7 +244,7 @@
       </div>
     </section>
         -->
-
+    <!-- contact us-->
     <section id="contact">
       <div class="container">
         <div class="row">
