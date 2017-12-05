@@ -1,4 +1,6 @@
 node_modules
 bower_components
 Learning/
-.idea/workspace.xml
+.idea/
+nbproject
+
