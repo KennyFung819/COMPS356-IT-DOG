@@ -54,13 +54,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             $_SESSION['username'] = $username;      
                             header("location: mainpage.php");
 						}
-                        } else{
+						else{
                             //tell the user that the username and password do not match
                             $password_error = "The password is incorrect. Please try again";
                         }
+                    } 
                 
                 }  else{
-                    // Display an error message if username doesn't exist
+                    //tell the user that the username do not exist
                     $username_error = "No account found with that username.";
 					}
             } else{
@@ -96,7 +97,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div>
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" value="">
-                <span><font color="red"><?php echo $password_error; echo $password; ?></font></span>
+                <span><font color="red"><?php echo $password_error; ?></font></span>
             </div>
             <div>
                 <input type="submit" value="Submit">

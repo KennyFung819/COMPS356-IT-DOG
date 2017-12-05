@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty(trim($_POST['password']))){
         $password_error = "Cannot be blank";     
     } else if(strlen(trim($_POST['password'])) < 6){
-        $password_error = "Password must have atleast 6 characters.";
+        $password_error = "Password must have at least 6 characters.";
     } else{
         $password = trim($_POST['password']);
     }
