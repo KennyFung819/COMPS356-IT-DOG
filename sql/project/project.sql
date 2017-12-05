@@ -94,3 +94,24 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--structure of userinfo
+CREATE TABLE userinfo (
+	user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username CHAR NOT NULL UNIQUE,
+    password CHAR NOT NULL
+);
+--structure of comment table
+CREATE TABLE `comment` (
+  `cid` int(10) NOT NULL AUTO_INCREMENT,
+  `uname` char(1) NOT NULL,
+  `pid` int(5) NOT NULL,
+  `comment_text` text NOT NULL,
+  `timeofcomment` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`cid`),
+  UNIQUE KEY `commentid_UNIQUE` (`cid`),
+  KEY `comment_kolid_idx` (`pid`),
+  KEY `comment_uname_idx` (`uname`),
+  CONSTRAINT `comment_kolid` FOREIGN KEY (`pid`) REFERENCES `kol_data` (`kolid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `comment_uname` FOREIGN KEY (`uname`) REFERENCES `user_info` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
