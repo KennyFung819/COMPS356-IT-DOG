@@ -30,7 +30,7 @@
 <!-- navbar for all webpage-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">KOLpedia</a>
+        <a class="navbar-brand js-scroll-trigger" href="../main/index.php">KOLpedia</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,17 +46,39 @@
                     <form class="navbar-form navbar-search my-lg-0" action="../searching.php">
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <select class="btn btn-primary text-center" name="keywordsType">
+                                <select class="btn btn-primary" name="keywordsType">
                                     <option class="btn" value="name" selected>Name</option>
                                     <option class="btn" value="platform">Platform</option>
                                 </select>
                             </div>
                             <input type="text" class="form-control" name="keywordsInput" value="">
                             <div class="input-group-btn">
-                                <input type="submit" class="btn  btn-outline-success my-2 my-sm-0" value="search">
+                                <input type="submit" class="btn  btn-success my-2 my-sm-0" value="search">
                             </div>
                         </div>
                     </form>
+                </li>
+
+                <li class="nav-item">
+                    <!--if user not yet login, show login button-->
+                    <?php if(!isset($_SESSION['username']) || empty($_SESSION['username'])){ ?>
+                        <a href="../login"><button class="btn btn-light text-info" name="">LOGIN</button></a>
+                        <!--if user logged in , show user info and a dropdown meum for logout-->
+                        <?php
+                    } else {  ?>
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php echo $_SESSION['username']; ?>
+                                <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a href="../login/logout.php">Logout</a>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </li>
             </ul>
         </div>
@@ -66,7 +88,6 @@
 <?php
     include 'getKol.php';
     include 'showContext.php';
-    include 'showContext2.php';
     $target= new kol;
     $target->findTarget();
     $targetContent = new content();
@@ -142,7 +163,7 @@ for ($sector=1; $sector<=$max; $sector++){
 include "comments.php";
 ?>
 
-<section class="bg-dark text-white text-center"id="contact">
+<section class="bg-dark text-white text-center" id="contact">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-lg-center">

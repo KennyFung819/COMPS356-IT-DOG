@@ -39,42 +39,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">KOLpedia</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-           <div class="collapse navbar-collapse" id="navbarResponsive">
-               <ul class="navbar-nav ml-auto">
-                   <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">Category</a>
-                </li>
-                   <li class="nav-item">
-                       <a class="nav-link js-scroll-trigger" href="#services">Random Page</a>
-                   </li>
-                   <li class="nav-item">
-                       <form class="navbar-form navbar-search my-lg-0" action="searching.php">
-                           <div class="input-group">
-                               <div class="input-group-btn">
-                                   <select class="btn btn-primary text-center" name="keywordsType">
-                                       <option class="btn" value="name" selected>Name</option>
-                                       <option class="btn" value="platform">Platform</option>
-                                   </select>
-                               </div>
-                               <input type="text" class="form-control" name="keywordsInput" value="">
-                               <div class="input-group-btn">
-                                   <input type="submit" class="btn  btn-success my-2 my-sm-0" value="search">
-                               </div>
-                           </div>
-                       </form>
-                   </li>
-                   <li class="nav-item">
-                       <a href="../login"><button class="btn btn-light text-info">LOGIN</button></a>
-                   </li>
-               </ul>
-           </div>
-       </div></nav>
+<?php include "../navbar/navbar.php" ?>
 
     <section id="logout">
         <div class="container">

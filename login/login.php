@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             //if the password is correct, start a session and save the username to it
                             session_start();
                             $_SESSION['username'] = $username;      
-                            header("location: index.php");
+                            header("location: ../main/index.php");
 						}
 						else{
                             //tell the user that the username and password do not match
@@ -106,42 +106,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">KOLpedia</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">Category</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Random Page</a>
-                </li>
-                <li class="nav-item">
-                    <form class="navbar-form navbar-search my-lg-0" action="../searching.php">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <select class="btn btn-primary text-center" name="keywordsType">
-                                    <option class="btn" value="name" selected>Name</option>
-                                    <option class="btn" value="platform">Platform</option>
-                                </select>
-                            </div>
-                            <input type="text" class="form-control" name="keywordsInput" value="">
-                            <div class="input-group-btn">
-                                <input type="submit" class="btn  btn-success my-2 my-sm-0" value="search">
-                            </div>
-                        </div>
-                    </form>
-                </li>
-                <li class="nav-item">
-                    <a href="../login"><button class="btn btn-light text-info">LOGIN</button></a>
-                </li>
-            </ul>
-        </div>
-    </div></nav>
+<?php include "../navbar/navbar.php" ?>
     <section id="login">
         <div class="container">
             <div class="row">
@@ -161,7 +126,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <span class="text-warning col-lg-3 col-sm-12"> <?php echo $username_error; ?></span>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-4 col-sm-4" for="password">Password:</label>
+                                <label class="col-lg-3 col-sm-4" for="password">Password:</label>
                                 <input class="form-control col-lg-6 col-sm-8" type="password" name="password" id="password" value="">
                                 <span class="text-warning col-lg-3 col-sm-12"> <?php echo $password_error; ?></span>
                             </div>
