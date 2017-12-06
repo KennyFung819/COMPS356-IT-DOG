@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2017 at 04:36 PM
+-- Generation Time: Dec 06, 2017 at 07:29 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -41,7 +41,9 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `pid`, `uname`, `comment_text`, `timeofcomment`) VALUES
-(1, 1, 'KennyFung', 'first comment', '2017-12-06 19:33:18');
+(1, 1, 'KennyFung', 'first comment', '2017-12-06 19:33:18'),
+(2, 1, 'KennyFung', '123', '2017-12-07 00:26:00'),
+(3, 2, 'KennyFung', 'i hate him', '2017-12-07 00:27:06');
 
 -- --------------------------------------------------------
 
@@ -78,20 +80,22 @@ CREATE TABLE `kol` (
   `gender` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `platform` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `follower` int(10) UNSIGNED NOT NULL,
+  `sub_count` int(11) NOT NULL DEFAULT '0',
   `category` varchar(20) NOT NULL,
   `intro` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img_url` text NOT NULL
+  `img_url` text NOT NULL,
+  `video_url` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kol`
 --
 
-INSERT INTO `kol` (`id`, `name`, `gender`, `platform`, `follower`, `category`, `intro`, `img_url`) VALUES
-(1, 'PewDiePie', 'Male', 'Youtube', 57969214, 'Gaming', 'Most subscribed person on Youtube ', 'img/Kol/PewDiePie/thumbnail.jpg'),
-(2, 'Juke Paul', 'Male', 'Youtube', 0, '', 'Somehow he is famous', ''),
-(3, 'summit1g', 'Male', 'Twitch', 0, '', 'One of the twitch most  followed personality', ''),
-(4, 'shourd', 'Male', 'Twitch', 0, '', 'Have the most subscriber on twitch', '');
+INSERT INTO `kol` (`id`, `name`, `gender`, `platform`, `follower`, `sub_count`, `category`, `intro`, `img_url`, `video_url`) VALUES
+(1, 'PewDiePie', 'Male', 'Youtube', 13600000, 58150542, 'Gaming', 'Most subscribed person on Youtube ', 'img/Kol/PewDiePie/thumbnail.jpg', 'www.youtube.com/embed/gRyPjRrjS34'),
+(2, 'Juke Paul', 'Male', 'Youtube', 0, 0, '', 'Somehow he is famous', '', ''),
+(3, 'summit1g', 'Male', 'Twitch', 0, 0, '', 'One of the twitch most  followed personality', '', ''),
+(4, 'shourd', 'Male', 'Twitch', 0, 0, '', 'Have the most subscriber on twitch', '', '');
 
 -- --------------------------------------------------------
 
@@ -111,7 +115,8 @@ CREATE TABLE `user_data` (
 
 INSERT INTO `user_data` (`uid`, `name`, `password`) VALUES
 (1, 'KennyFung', '123123'),
-(2, '123123', '123123');
+(2, '123123', '123123'),
+(3, 'testing', '123123');
 
 -- --------------------------------------------------------
 
@@ -181,13 +186,13 @@ ALTER TABLE `wiki`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `uid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `uid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

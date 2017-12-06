@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
  <html>
-<section class="bg-light text-dark" id="comment">
+<section class="bg-dark text-white" id="comment">
     <div class="container">
         <?php
         $conn=connectDB();
