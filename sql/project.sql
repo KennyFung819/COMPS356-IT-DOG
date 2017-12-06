@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2017 at 06:30 PM
+-- Generation Time: Dec 06, 2017 at 10:40 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -31,8 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `comment` (
   `id` int(3) NOT NULL,
   `pid` int(3) NOT NULL,
-  `uid` int(3) NOT NULL,
-  `comment_text` text NOT NULL
+  `uname` varchar(30) NOT NULL,
+  `comment_text` text NOT NULL,
+  `timeofcomment` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -136,7 +137,7 @@ INSERT INTO `wiki` (`pid`, `id`, `load_order`, `subtitle`, `content`) VALUES
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pid` (`pid`),
-  ADD KEY `uid` (`uid`);
+  ADD KEY `uname` (`uname`);
 
 --
 -- Indexes for table `contact`
@@ -154,7 +155,9 @@ ALTER TABLE `kol`
 -- Indexes for table `user_data`
 --
 ALTER TABLE `user_data`
-  ADD PRIMARY KEY (`uid`);
+  ADD PRIMARY KEY (`uid`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD KEY `name_2` (`name`);
 
 --
 -- Indexes for table `wiki`
@@ -172,7 +175,7 @@ ALTER TABLE `wiki`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_location` FOREIGN KEY (`pid`) REFERENCES `kol` (`id`),
-  ADD CONSTRAINT `comment_user` FOREIGN KEY (`uid`) REFERENCES `user_data` (`uid`);
+  ADD CONSTRAINT `comment_user` FOREIGN KEY (`uname`) REFERENCES `user_data` (`name`);
 
 --
 -- Constraints for table `contact`

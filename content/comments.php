@@ -22,7 +22,11 @@
      <form  method="post">
          <div class="form-group">
              <div class="form-group row">
+<<<<<<< HEAD
                  <label for="name" class="col-lg-2  col-form-label">Your name: <?php echo $_SESSION['username'];?></label>
+=======
+                 <label for="name" class="col-lg-2  col-form-label"> Your Name:<?php echo $_SESSION['userName'];?>
+>>>>>>> af280718c326708aac1c487234ccd4f3499c28ff
              </div>
              <div class="form-group row">
                 <label for="comment" class="col-lg-12  col-form-label"> Comments: </label>
@@ -46,7 +50,11 @@
  </html>
 
  <?php
+<<<<<<< HEAD
  function insertComment(mysqli $mysql)
+=======
+ function insertComment()
+>>>>>>> af280718c326708aac1c487234ccd4f3499c28ff
  {
      if (!isset($_POST['userComment'])||empty($_POST['userComment'])) {
          #POP A ALERT IF USER DO NOT INPUT ANY THING
@@ -56,11 +64,30 @@
           alert("please login");
         }else {
          #GET THE FORM DATA
+<<<<<<< HEAD
          $name = $_SESSION['username'];#user name from session
          $pid=$_GET['targetKol'];
          $comment = str_replace("'", "&apos", trim($_POST["userComment"]));#replace single quotes
          $uname_temp=$_SESSION['username'];
          $insert="INSERT INTO comment(pid,uname,comment_text,timeofcomment) VALUES($pid,$uname_temp,$comment,now())";
+=======
+  $name = $_SESSION['username'];#user name from session
+  $pid=$_GET['targetKol'];
+         $message = str_replace("'", "&apos", trim($_POST["userComment"]));#replace single quotes
+         $time=time();
+
+         #Connet to database
+         $servername='localhost';
+         $username = 'root';
+         $password = 'Kappa819';
+         $db ='project';
+         $mysql = new mysqli($servername, $username, $password, $db);
+         if ($mysql->connect_error) {
+             die("connection failed:" . $mysql->connect_error);
+         }
+         $insert = "INSERT INTO comment(pid,uname,comment_text,timeofcomment) VALUES($pid,$_SESSION['username'], $message,$time)";
+
+>>>>>>> af280718c326708aac1c487234ccd4f3499c28ff
          #WRITE DOWN COMMENTS#
          if ($mysql->query($insert)) {
              alert("comment succeeded!");
@@ -81,6 +108,7 @@
 function displayComment(mysqli $mysql, int $pid)
 {
     $resultWithHtml="";
+<<<<<<< HEAD
     $pid;$uname;$comment_text;$timeofcomment;
     $query="SELECT PID,UNAME,COMMENT_TEXT,TIMEOFCOMMENT FROM COMMENT WHERE PID=$pid  ORDER BY TIMEOFCOMMENT DESC LIMIT 5";
     if($stmt=$mysql->prepare($query)){
@@ -99,6 +127,30 @@ function displayComment(mysqli $mysql, int $pid)
     }else{
       $resultWithHtml="<p>There is no comment here. Be the first one!</p>";
     }
+=======
+    $query="SELECT PID,UID,COMMENT_TEXT,TIMEOFCOMMENT FROM COMMENT WHERE PID=$pid LIMITI 5 ORDER BY TIMEOFCOMMENT DESC";
+    $stmt=$mysql->prepare($query);
+    $stmt->bind_result($pid, $uid, $comment_text, $timeofcomment);
+    $stmt->execute();
+    $stmt->store_result();
+    $query="SELECT PID,UNAME,COMMENT_TEXT,TIMEOFCOMMENT FROM COMMENT WHERE PID=$pid LIMITI 5 ORDER BY TIMEOFCOMMENT DESC";
+    $stmt=$mysql->prepare($query);
+    $stmt->bind_result($pid, $uname, $comment_text, $timeofcomment);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows==0) {
+        $resultWithHtml="There is no comment here. Be the first one!";
+    } else {
+        while ($stmt->fetch()) {
+          $timetoprint=new date('H:i M d, Y',$timeofcomment);
+          $resultWithHtml=$resultWithHtml."
+          <div class='container'>
+          <div class='col-md-4 col-lg-4'><h4>$uname</h4></div>
+          <div class='col-md-8 col-lg-8'><p>$comment_text</p><hr><p>$timetoprint</p></div>
+          </div>";
+        }
+>>>>>>> af280718c326708aac1c487234ccd4f3499c28ff
         return $resultWithHtml;
     }
 
