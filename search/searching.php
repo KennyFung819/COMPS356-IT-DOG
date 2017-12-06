@@ -66,7 +66,7 @@ function makeConnection(Array $keywords, $keywordsType)
   echo "making connection<br>";
     $servername='localhost';
     $username = 'root';
-    $password = 'Kappa819';
+    $password = '';
     $db ='project';
 
     $port=3306;

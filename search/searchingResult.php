@@ -51,7 +51,13 @@
             } ?>>Platform</option>
         </select>
       </div>
-        <input type="text" class="form-control" name="keywordsInput" placeholder="please enter the keywords you want to search" value="<?php echo $_SESSION['keywordsInput'];?>">
+        <input type="text" class="form-control" name="keywordsInput" placeholder="please enter the keywords you want to search" value="
+        <?php
+        if (!empty($_SESSION['keywordsInput'])&&!ctype_space($_SESSION['keywordsInput'])) {
+            echo trim($_SESSION['keywordsInput']);
+        }
+        ?>
+        ">
         <div class="input-group-btn">
         <input type="submit" class="btn  btn-primary" value="search">
         </div>
