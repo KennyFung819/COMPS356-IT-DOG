@@ -43,6 +43,7 @@
                     <li class="nav-item">
                         <?php include "content/random_page.php";
                         $random= new randomPage;
+                        $random2= new randomPage;
                         ?>
                         <a class="nav-link" href="content/?targetKol=<?php $random->getRandom(); ?>">Random Page</a>
                     </li>
@@ -156,7 +157,7 @@
             <h2 class="section-heading text-white">We collected some of internet best talent and display them here!</h2>
             <hr class="light my-4">
             <p class="text-faded mb-4">They are the most well-known person on the internet! You can find the you need infomation around here.</p>
-            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Show me one!</a>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="content/?targetKol=<?php $random2->getRandom(); ?>">Show me one!</a>
           </div>
         </div>
       </div>
