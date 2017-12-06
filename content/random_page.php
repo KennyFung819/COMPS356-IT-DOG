@@ -5,7 +5,7 @@ class randomPage{
 function __construct(){
     $servername='localhost';
     $username = 'root';
-    $password = 'Kappa819';
+    $password = '';
     $db ='project';
 
     $mysql = new mysqli($servername, $username, $password, $db);

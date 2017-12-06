@@ -48,9 +48,9 @@
          $servername='localhost';
          $username = 'root';
 <<<<<<< HEAD
-         $password = 'Qq135311329';
+         $password = '';
 =======
-         $password = 'Kappa819';
+         $password = '';
 >>>>>>> master-commentSection-Raven
          $db ='project';
          $mysql = new mysqli($servername, $username, $password, $db);
