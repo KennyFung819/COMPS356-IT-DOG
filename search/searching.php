@@ -120,11 +120,11 @@ function processHtml(mysqli_stmt $resultSet, int $page)
         $html=$html."
       <div class='row'>
       <div class='col-lg-3 col-md-6 text-center'>
-      <a href=content/index.php?targetKol=$kolId>
+      <a href=../content/index.php?targetKol=$kolId>
         <img src='../$picturePath' alt='$name's picture' height='200'/>
         <h4>$name</h4></a>
       </div>
-      <div class='col-lg-9 col-md-6'><p class='text-muted mb-0'>$intro</p></div>
+      <div class='col-lg-9 col-md-6 text-center'><p class='text-muted mb-0'>$intro</p></div>
       </div>";
     }
     echo $html;
