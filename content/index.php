@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 text-center">
-                <img class="img-fluid" src="../<?php $target->getImg_folder(); ?>/01.jpg">
+                <img class="img-fluid" src="../<?php $target->getImg_url(); ?>">
             </div>
         </div>
     </div>

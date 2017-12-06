@@ -77,7 +77,7 @@ function makeConnection(Array $keywords, $keywordsType)
     //
     else {
       echo "connect successfully<br>";
-        $sql="SELECT id,name,img_folder,intro FROM kol WHERE ";
+        $sql="SELECT id,name,img_url,intro FROM kol WHERE ";
         foreach ($keywords as $word) {
             $sql=$sql."lower($keywordsType) like lower('%$word%') and ";
         }
@@ -121,7 +121,7 @@ function processHtml(mysqli_stmt $resultSet,$page)
       <div class='row'>
       <div class='col-lg-3 col-md-6 text-center'>
       <a href=../content/index.php?targetKol=$kolId>
-        <img src='../$picturePath/thumbnail.jpg' alt='$name &apos; picture' height='200'/>
+        <img src='../$picturePath' alt='$name &apos; picture' height='200'/>
         <h4>$name</h4></a>
       </div>
       <div class='col-lg-9 col-md-6 text-center'><p class='text-muted mb-0'>$intro</p></div>
