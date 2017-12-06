@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2017 at 10:40 AM
+-- Generation Time: Dec 06, 2017 at 12:59 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -33,8 +33,15 @@ CREATE TABLE `comment` (
   `pid` int(3) NOT NULL,
   `uname` varchar(30) NOT NULL,
   `comment_text` text NOT NULL,
-  `timeofcomment` date NOT NULL
+  `timeofcomment` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `pid`, `uname`, `comment_text`, `timeofcomment`) VALUES
+(1, 1, 'KennyFung', 'first comment', '2017-12-06 19:33:18');
 
 -- --------------------------------------------------------
 
@@ -103,7 +110,7 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`uid`, `name`, `password`) VALUES
-(0, 'KennyFung', '12345678');
+(1, 'KennyFung', '123123');
 
 -- --------------------------------------------------------
 
@@ -156,8 +163,7 @@ ALTER TABLE `kol`
 --
 ALTER TABLE `user_data`
   ADD PRIMARY KEY (`uid`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `name_2` (`name`);
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `wiki`
@@ -165,6 +171,22 @@ ALTER TABLE `user_data`
 ALTER TABLE `wiki`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pid` (`pid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_data`
+--
+ALTER TABLE `user_data`
+  MODIFY `uid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
