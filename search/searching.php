@@ -22,19 +22,19 @@ if (isset($_GET['page'])) {
 $_SESSION['keywordsInput']=$_GET['keywordsInput'];
 $_SESSION['keywordsType']=$_GET['keywordsType'];
 $keywordsArray=processString($_SESSION['keywordsInput']);
-if($keywordsArray!=null)
+if ($keywordsArray!=null) {
     $_SESSION['resultBuffer']=makeConnection($keywordsArray, $_SESSION['keywordsType']);
-else
+} else {
     $_SESSION['resultBuffer']=null;
-
-if($_SESSION['resultBuffer']!=null){
-    $_SESSION['resultSet']=processHtml($_SESSION['resultBuffer'], $_SESSION['page']);
-    $_SESSION['pages']=processPages($_SESSION['resultBuffer'],$_SESSION['page']);
-    $_SESSION['resultBuffer']->free_result();
 }
-else {
+
+if ($_SESSION['resultBuffer']!=null) {
+    $_SESSION['resultSet']=processHtml($_SESSION['resultBuffer'], $_SESSION['page']);
+    $_SESSION['pages']=processPages($_SESSION['resultBuffer'], $_SESSION['page']);
+    $_SESSION['resultBuffer']->free_result();
+} else {
     $_SESSION['resultSet']="<p>the kol you want to search doesn't exist, please try other keywords</p>";
-    $_SESSION['pages']="";
+    $_SESSION['pages']=null;
 }
 //redirection
 header("Location:searchingResult.php?keywordsInput=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=".$_SESSION['page']);
@@ -47,8 +47,9 @@ function processString($keywords)
 {
     $pattern="/[\s]+/";
     $keywords=trim($keywords);
-    if(!isset($keywords)||empty($keywords))
+    if (!isset($keywords)||empty($keywords)) {
         return null;
+    }
     $separateWords=preg_split($pattern, $keywords);
     foreach ($separateWords as $word) {
         echo $word."<br>";
@@ -59,7 +60,7 @@ function processString($keywords)
 /**
  *make a connection and a query to database and return the result set
  */
-function makeConnection(Array $keywords, $keywordsType)
+function makeConnection(array $keywords, $keywordsType)
 {
     echo "making connection<br>";
     $host='localhost';
@@ -80,11 +81,16 @@ function makeConnection(Array $keywords, $keywordsType)
             $sql=$sql."lower($keywordsType) like lower('%$word%') and ";
         }
         $sql=$sql." 1=1";
+        if($_GET['sort']==2)
+          $sql=$sql." order by follower desc";
+          else {
+            $_GET['sort']=1;
+            $sql=$sql." order by name";
+          }
         echo $sql;
         $stmt=$conn->prepare($sql);
         $stmt->execute();
         $stmt->store_result();
-        //$result=$conn->store_result();
         echo "<br>the num of rows is ".$stmt->num_rows."<br>";
         if ($stmt->num_rows==0) {
             echo $result->num_rows;
@@ -98,7 +104,7 @@ function makeConnection(Array $keywords, $keywordsType)
 /**
  *process the result and return string with html tags
  */
-function processHtml(mysqli_stmt $resultSet,$page)
+function processHtml(mysqli_stmt $resultSet, $page)
 {
     echo "entering the processhtml function<br>";
     echo "the page is ".$page."<br>";
@@ -110,11 +116,12 @@ function processHtml(mysqli_stmt $resultSet,$page)
         $page=1;
     }
     $resultSet->data_seek(($page-1)*20);
-    $resultSet->bind_result($kolId,$name,$picturePath,$intro);
+    $resultSet->bind_result($kolId, $name, $picturePath, $intro);
     for ($count=0;$count<20;$count++) {
         //add html tags into fetched record
-        if(!$resultSet->fetch())
+        if (!$resultSet->fetch()) {
             break;
+        }
         $html=$html."
       <div class='row'>
       <div class='col-lg-3 col-md-6 text-center'>
@@ -128,10 +135,13 @@ function processHtml(mysqli_stmt $resultSet,$page)
     echo $html;
     return $html;
 }
-function processPages(mysqli_stmt $resultset,int $page){
+function processPages(mysqli_stmt $resultset, int $page)
+{
     $keywordsInput=$_SESSION['keywordsInput'];
     $keywordsType=$_SESSION['keywordsType'];
-    $count;$pageHtml='';
+    $count;
+    $pageHtml='';
+    $sort=$_GET['sort'];
     if ($page>=5) {
         $count=$_SESSION-4;
     } else {
@@ -140,20 +150,19 @@ function processPages(mysqli_stmt $resultset,int $page){
     $pages=(int)($resultset->num_rows/20)+1;
     $pageHtml="<div><hr></div><span class='col-lg-5 col-md-6 text-right text-muted'>select pages here ▶ </span><ul class='pagination col-lg-7 col-md-6'>";
     if ($page!=1) {
-        echo "<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($page-1)."'>previous page</a></li>";
+        echo "<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($page-1)."&sort=$sort'>previous page</a></li>";
     }
     for ($times=0;$times<10&&$count<=$pages;$count++,$times++) {
         if ($count==$page) {
             $pageHtml=$pageHtml."<li><a href='#'>$count</a></li>";
         } else {
-            $pageHtml=$pageHtml."<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=$count'>$count</a></li>";
+            $pageHtml=$pageHtml."<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=$count&sort=$sort'>$count</a></li>";
         }
     }
     echo "the number of total pages is".$pages;
     if ($page<$pages) {
-        $pageHtml=$pageHtml."<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($page+1)."'>next page</a></li>";
+        $pageHtml=$pageHtml."<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($page+1)."&sort=$sort'>next page</a></li>";
     }
     $pageHtml=$pageHtml."</ul>";
     return $pageHtml;
 }
-?>
