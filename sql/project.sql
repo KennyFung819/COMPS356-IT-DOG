@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2017 at 12:59 PM
+-- Generation Time: Dec 06, 2017 at 04:36 PM
 -- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -80,15 +80,15 @@ CREATE TABLE `kol` (
   `follower` int(10) UNSIGNED NOT NULL,
   `category` varchar(20) NOT NULL,
   `intro` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img_folder` text NOT NULL
+  `img_url` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kol`
 --
 
-INSERT INTO `kol` (`id`, `name`, `gender`, `platform`, `follower`, `category`, `intro`, `img_folder`) VALUES
-(1, 'PewDiePie', 'Male', 'Youtube', 57969214, 'Gaming', 'Most subscribed person on Youtube ', 'img/Kol/PewDiePie'),
+INSERT INTO `kol` (`id`, `name`, `gender`, `platform`, `follower`, `category`, `intro`, `img_url`) VALUES
+(1, 'PewDiePie', 'Male', 'Youtube', 57969214, 'Gaming', 'Most subscribed person on Youtube ', 'img/Kol/PewDiePie/thumbnail.jpg'),
 (2, 'Juke Paul', 'Male', 'Youtube', 0, '', 'Somehow he is famous', ''),
 (3, 'summit1g', 'Male', 'Twitch', 0, '', 'One of the twitch most  followed personality', ''),
 (4, 'shourd', 'Male', 'Twitch', 0, '', 'Have the most subscriber on twitch', '');
@@ -110,7 +110,8 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`uid`, `name`, `password`) VALUES
-(1, 'KennyFung', '123123');
+(1, 'KennyFung', '123123'),
+(2, '123123', '123123');
 
 -- --------------------------------------------------------
 
@@ -186,7 +187,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `uid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `uid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
