@@ -1,47 +1,46 @@
 <!DOCTYPE HTML>
  <html>
- <div class="container">
-   <?php
-   $conn=connectDB();
-   if(!$_POST&&$conn&&isset($_GET['targetKol'])){
-     $commentText=displayComment($conn,(int)$_GET['targetKol']);
-     echo $commentText;
-     $conn->close();
-   }
-    elseif($_POST&&$conn&&isset($_GET['targetKol'])){
-      insertComment($conn);
-      $commentText=displayComment($conn,(int)$_GET['targetKol']);
-      echo $commentText;
-      $conn->close();
-    }
-    ?>
-    <?php
-      if(!isset($_SESSION['username'])): echo "please <a href='../login/login.php'>log in</a>";
-    else: ?>
-     <form  method="post">
-         <div class="form-group">
-             <div class="form-group row">
-                 <label for="name" class="col-lg-2  col-form-label">Your name: <?php echo $_SESSION['username'];?></label>
-             </div>
-             <div class="form-group row">
-                <label for="comment" class="col-lg-12  col-form-label"> Comments: </label>
-                 <div class="col-lg-12">
-                     <textarea class="form-control" name="userComment" id="comment"></textarea>
-                     <p class="text-danger" id="warning" hidden></p>
-                 </div>
-             </div>
-            <div class="row">
-                <span class="col-lg-5 col-md-4 col-sm-2"></span>
-                <button type="submit" class="btn btn-primary col-lg-2 col-md-4 col-sm-8" name="submit-comment">Submit</button>
-            </div>
-         </div>
-     </form>}
-   <?php endif?>
+<section class="bg-light text-dark" id="comment">
+    <div class="container">
+        <?php
+        $conn=connectDB();
+        if(!$_POST&&$conn&&isset($_GET['targetKol'])){
+            $commentText=displayComment($conn,(int)$_GET['targetKol']);
+            echo $commentText;
+            $conn->close();
+        }
+        elseif($_POST&&$conn&&isset($_GET['targetKol'])){
+            insertComment($conn);
+            $commentText=displayComment($conn,(int)$_GET['targetKol']);
+            echo $commentText;
+            $conn->close();
+        }
+        ?>
+        <?php
+        if(!isset($_SESSION['username'])): echo "please <a href='../login/login.php'>log in</a>";
+        else: ?>
+            <form  method="post">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="name" class="col-lg-2  col-form-label text-info">Your name: <span class="text-muted"><?php echo $_SESSION['username'];?></span></label>
+                    </div>
+                    <div class="form-group row">
+                        <label for="comment" class="col-lg-12  col-form-label text-info"> Comments Below:</label>
+                        <div class="col-lg-12">
+                            <textarea class="form-control" name="userComment" id="comment"></textarea>
+                            <p class="text-danger" id="warning" hidden></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="col-lg-5 col-md-4 col-sm-2"></span>
+                        <button type="submit" class="btn btn-primary col-lg-2 col-md-4 col-sm-8" name="submit-comment">Submit</button>
+                    </div>
+                </div>
+            </form>
+        <?php endif?>
 
- </div>
- <!-- Bootstrap core JavaScript -->
- <script src="../vendor/jquery/jquery.min.js"></script>
- <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </div>
+</section>
  </html>
 
  <?php
@@ -58,10 +57,11 @@
          $name = $_SESSION['username'];#user name from session
          $pid=$_GET['targetKol'];
          $comment = str_replace("'", "&apos", trim($_POST["userComment"]));#replace single quotes
-         $uname_temp=$_SESSION['username'];
-         $insert="INSERT INTO comment(pid,uname,comment_text,timeofcomment) VALUES($pid,$uname_temp,$comment,now())";
+
+         $insert="INSERT INTO comment(id,pid,uname,comment_text,timeofcomment) VALUES( NULL,$pid,$name,$comment,now())";
+
          #WRITE DOWN COMMENTS#
-         if ($mysql->query($insert)) {
+         if ($mysql->query($insert) === TRUE) {
              alert("comment succeeded!");
          } else {
              alert("comment failed!");
@@ -76,10 +76,9 @@
 * @param int $pid the id of kol
 * @return string results with html tags
 */
-function displayComment(mysqli $mysql, int $pid)
+function displayComment(mysqli $mysql,$pid)
 {
     $resultWithHtml="";
-    $pid;$uname;$comment_text;$timeofcomment;
     $query="SELECT PID,UNAME,COMMENT_TEXT,TIMEOFCOMMENT FROM COMMENT WHERE PID=$pid  ORDER BY TIMEOFCOMMENT DESC LIMIT 5";
     if($stmt=$mysql->prepare($query)){
       $stmt->execute();
@@ -91,7 +90,8 @@ function displayComment(mysqli $mysql, int $pid)
         $resultWithHtml=$resultWithHtml."
         <div class='container'>
         <div class='col-md-4 col-lg-4'><h4>$uname</h4></div>
-        <div class='col-md-8 col-lg-8'><p>$comment_text</p><hr><p>$timetoprint</p></div>
+        <div class='col-md-8 col-lg-8'><span>$comment_text</span><p class='text-muted text-center'>$timetoprint</p></div>
+        <hr>
         </div>";
       }
     }else{

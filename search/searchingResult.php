@@ -10,7 +10,7 @@
                   <h2 class="section-heading text-emphasize">Search the KOL</h2>
                   <hr class="my-5">
                   <div class="col-lg-8 mx-auto">
-                  <p class="text-faded mb-5">"KOL" stand for Key opinion leader, usually describe people who have certain amount of social interference to other people.</p>
+                  <p class="text-dark mb-5">"KOL" stand for Key opinion leader, usually describe people who have certain amount of social interference to other people.</p>
                   </div>
               </div>
           </div>
