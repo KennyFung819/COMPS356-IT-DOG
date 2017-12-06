@@ -4,7 +4,7 @@
      <form  method="post">
          <div class="form-group">
              <div class="form-group row">
-                 <label for="name" class="col-lg-2  col-form-label"> Name:</label><input type="text" readonly class="form-control-plaintext" id="name">
+                 <label for="name" class="col-lg-2  col-form-label"> Your Name:<?php echo $_SESSION['userName'];?>
              </div>
              <div class="form-group row">
                 <label for="comment" class="col-lg-12  col-form-label"> Comments: </label>
@@ -24,9 +24,8 @@
  <script src="../vendor/jquery/jquery.min.js"></script>
  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
  </html>
- 
+
  <?php
-<<<<<<< HEAD
  function insertComment()
  {
      if (isset($_POST['userComment'])||empty($_POST['userComment'])) {
@@ -47,11 +46,7 @@
          #Connet to database
          $servername='localhost';
          $username = 'root';
-<<<<<<< HEAD
-         $password = '';
-=======
-         $password = '';
->>>>>>> master-commentSection-Raven
+         $password = 'Kappa819';
          $db ='project';
          $mysql = new mysqli($servername, $username, $password, $db);
          if ($mysql->connect_error) {
@@ -71,10 +66,7 @@
 
 /**
 * display the top 5 comments most currently, it will return strings with html tags
-<<<<<<< HEAD
-=======
 * please remenber to close the database connection after invoking this function
->>>>>>> master-commentSection-Raven
 *
 * @param mysqli $mysql the database connection
 * @param int $pid the id of kol
@@ -83,38 +75,27 @@
 function displayComment(mysqli $mysql, int $pid)
 {
     $resultWithHtml="";
-<<<<<<< HEAD
     $query="SELECT PID,UID,COMMENT_TEXT,TIMEOFCOMMENT FROM COMMENT WHERE PID=$pid LIMITI 5 ORDER BY TIMEOFCOMMENT DESC";
     $stmt=$mysql->prepare($query);
     $stmt->bind_result($pid, $uid, $comment_text, $timeofcomment);
     $stmt->execute();
     $stmt->store_result();
-=======
     $query="SELECT PID,UNAME,COMMENT_TEXT,TIMEOFCOMMENT FROM COMMENT WHERE PID=$pid LIMITI 5 ORDER BY TIMEOFCOMMENT DESC";
     $stmt=$mysql->prepare($query);
     $stmt->bind_result($pid, $uname, $comment_text, $timeofcomment);
     $stmt->execute();
     $stmt->store_result();
 
->>>>>>> master-commentSection-Raven
     if ($stmt->num_rows==0) {
         $resultWithHtml="There is no comment here. Be the first one!";
     } else {
         while ($stmt->fetch()) {
-<<<<<<< HEAD
-            $resultWithHtml=$resultWithHtml."
-          <div class='container'>
-          <div class='col-md-4 col-lg-4'><h4>$uid</h4></div>
-          <divclass='col-md-8 col-lg-8'><p>$comment_text</p><hr><p>$timeofcomment</p></div>
-=======
           $timetoprint=new date('H:i M d, Y',$timeofcomment);
           $resultWithHtml=$resultWithHtml."
           <div class='container'>
           <div class='col-md-4 col-lg-4'><h4>$uname</h4></div>
           <div class='col-md-8 col-lg-8'><p>$comment_text</p><hr><p>$timetoprint</p></div>
->>>>>>> master-commentSection-Raven
-          </div>
-          ";
+          </div>";
         }
         return $resultWithHtml;
     }
@@ -122,51 +103,6 @@ function displayComment(mysqli $mysql, int $pid)
 
  function alert($msg)
  {
-=======
-
-
-
- if (isset($_POST['userComment'])) {
-     #POP A ALERT IF USER DO NOT INPUT ANY THING
-     alert("The comment cannot be empty");
-     die;
- }
-
- #Connet to database
-
- $servername='localhost';
- $username = 'root';
- $password = 'Kappa819';
- $db ='project';
-
- $name = $_POST["userName"];
- $message = $_POST["userComment"];
-
- $mysql = new mysqli($servername, $username, $password, $db);
- if ($mysql->connect_error){
-     die("connection failed:" . $mysql->connect_error);
- }
-
- $pid=$_GET['targetKol'];
-
- if($_POST){
-
-
-
- $insert = "INSERT INTO comment(pid,uid,comment_text) VALUES($pid,uid, $message) FROM comment WHERE pid='$pid' ORDER BY id";
-
- #GET THE FORM DATA
-
-
-
- }
- #WRITE DOWN COMMENTS#
-
-#DISPLAY COMMENTS#
-
-
- function alert($msg) {
->>>>>>> Revert "display comments"
      echo "<script type='text/javascript'>alert('$msg');</script>";
  }
 ?>
