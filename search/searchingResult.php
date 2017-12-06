@@ -42,12 +42,19 @@
   </section>
   <section id="resultdetail">
 <div class='container'>
+	<?php if(isset($_SESSION['pages'])){
+		$sort1="searching.php?keywords=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=1&sort=1";
+		$sort2="searching.php?keywords=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=1&sort=2";
+		?>
+		<div>
+			<ul>
+				<li><a href='<?php echo $sort1?>'>sort by name</a></li>
+				<li><a href="<?php echo $sort1?>">sort by follower</a></li>
+			</ul>
+		</div>
+	<?php }?>
 <div id="result">
-<?php
-if (isset($_SESSION['resultSet'])) {
-                echo $_SESSION['resultSet'];
-            }
-?>
+	<?php if(isset($_SESSION['resultSet'])) echo $_SESSION['resultSet']; ?>
 </div>
 </div>
 </section>
