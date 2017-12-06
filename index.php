@@ -66,7 +66,7 @@
                     <li class="nav-item">
                         <!--if user not yet login, show login button-->
                         <?php if(!isset($_SESSION['username']) || empty($_SESSION['username'])){ ?>
-                            <a href="login/logout.php"><button class="btn btn-light text-info" name="">LOGIN</button></a>
+                            <a href="login/login.php"><button class="btn btn-light text-info" name="">LOGIN</button></a>
                             <!--if user logged in , show user info and a dropdown meum for logout-->
                             <?php
                         } else {  ?>

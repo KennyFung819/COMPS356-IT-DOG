@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $stmt->execute();
                 $stmt->close();
                 //redirect to login page
-                header('location: index.php');
+                header('location: success_reg.php');
             }
             catch (Exception $e){
                 echo 'Caught exception: ',  $e->getMessage(), "\n";

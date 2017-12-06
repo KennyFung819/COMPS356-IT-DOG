@@ -79,26 +79,19 @@ class kol{
     }
 
     public function searchTarget($id) {
-
-
         $target_temp = "SELECT name, gender,platform,category,img_url,follower,intro FROM kol WHERE id='$id'";
 
         global $mysql;
-
-        $target= $mysql->query($target_temp);
-
-        if ($target->num_rows > 0) {
-            // output data of each rowz
-            while($row = $target->fetch_assoc()) {
-                $this->setName($row["name"]);
-                $this->setGender($row["gender"]);
-                $this->setPlatform($row["platform"]);
-                $this->setCategory($row["category"]);
-                $this->setFollower($row["follower"]);
-                $this->setImg_url($row["img_url"]);
-                $this->setIntro($row["intro"]);
-            }
-        }
+        $result= $mysql->query($target_temp);
+        $row= $result->fetch_assoc();
+        $this->setName($row["name"]);
+        $this->setGender($row["gender"]);
+        $this->setPlatform($row["platform"]);
+        $this->setCategory($row["category"]);
+        $this->setFollower($row["follower"]);
+        $this->setImg_url($row["img_url"]);
+        $this->setIntro($row["intro"]);
+        $result->close();
     }
     public function findTarget(){
         $id=$_GET['targetKol'];
