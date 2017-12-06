@@ -19,18 +19,14 @@ if (isset($_GET['page'])) {
     $_SESSION['page']=1;
 }
 
-if (!isset($_SESSION['keywordsInput'])||!isset($_SESSION['keywordsType'])) {
-    $_SESSION['keywordsInput']=$_GET['keywordsInput'];
-    $_SESSION['keywordsType']=$_GET['keywordsType'];
-}
-
-//if the keywords are the same with the previous input and the buffer is not null, retrive the data from the buffer
-
-
 $_SESSION['keywordsInput']=$_GET['keywordsInput'];
 $_SESSION['keywordsType']=$_GET['keywordsType'];
 $keywordsArray=processString($_SESSION['keywordsInput']);
-$_SESSION['resultBuffer']=makeConnection($keywordsArray, $_SESSION['keywordsType']);
+if($keywordsArray!=null)
+  $_SESSION['resultBuffer']=makeConnection($keywordsArray, $_SESSION['keywordsType']);
+else
+  $_SESSION['resultBuffer']=null;
+
 if($_SESSION['resultBuffer']!=null){
 $_SESSION['resultSet']=processHtml($_SESSION['resultBuffer'], $_SESSION['page']);
 $_SESSION['pages']=processPages($_SESSION['resultBuffer'],$_SESSION['page']);
@@ -38,7 +34,7 @@ $_SESSION['resultBuffer']->free_result();
 }
 else {
   $_SESSION['resultSet']="<p>the kol you want to search doesn't exist, please try other keywords</p>";
-  $_SESSION['page']=null;
+  $_SESSION['pages']="";
 }
 //redirection
 header("Location:searchingResult.php?keywordsInput=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=".$_SESSION['page']);
@@ -51,6 +47,8 @@ function processString($keywords)
 {
     $pattern="/[\s]+/";
     $keywords=trim($keywords);
+    if(!isset($keywords)||empty($keywords))
+    return null;
     $separateWords=preg_split($pattern, $keywords);
     foreach ($separateWords as $word) {
       echo $word."<br>";
@@ -142,18 +140,18 @@ function processPages(mysqli_stmt $resultset,int $page){
       $pages=(int)($resultset->num_rows/20)+1;
       $pageHtml="<div><hr></div><span class='col-lg-5 col-md-6 text-right text-muted'>select pages here ▶ </span><ul class='pagination col-lg-7 col-md-6'>";
       if ($page!=1) {
-          echo "<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($page-1)."'>previous page</a></li>";
+          echo "<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($page-1)."'>previous page</a></li>";
       }
       for ($times=0;$times<10&&$count<=$pages;$count++,$times++) {
           if ($count==$page) {
               $pageHtml=$pageHtml."<li><a href='#'>$count</a></li>";
           } else {
-              $pageHtml=$pageHtml."<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=$count'>$count</a></li>";
+              $pageHtml=$pageHtml."<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=$count'>$count</a></li>";
           }
       }
       echo "the number of total pages is".$pages;
       if ($page<$pages) {
-          $pageHtml=$pageHtml."<li><a href='searchingResult.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($page+1)."'>next page</a></li>";
+          $pageHtml=$pageHtml."<li><a href='searching.php?keywordstype=$keywordsType&keywordsInput=$keywordsInput&page=".($page+1)."'>next page</a></li>";
       }
       $pageHtml=$pageHtml."</ul>";
       return $pageHtml;
