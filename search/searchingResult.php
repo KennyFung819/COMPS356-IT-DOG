@@ -23,9 +23,14 @@
       <!-- Custom styles for this template -->
       <link href="../css/creative.css" rel="stylesheet">
 </head>
+<<<<<<< HEAD
 <body class="bg-white">
 
 <?php include "../navbar/navbar.php" ?>
+=======
+<body class="bg-light">
+	<?php include "../navbar/navbar.php" ?>
+>>>>>>> master
   <section class="text-white" id="introduction">
       <div class="container">
           <div class="row">
@@ -51,13 +56,11 @@
             } ?>>Platform</option>
         </select>
       </div>
-        <input type="text" class="form-control" name="keywordsInput" placeholder="please enter the keywords you want to search" value="
-        <?php
+        <input type="text" class="form-control" name="keywordsInput" placeholder="please enter the keywords you want to search" value="<?php
         if (!empty($_SESSION['keywordsInput'])&&!ctype_space($_SESSION['keywordsInput'])) {
             echo trim($_SESSION['keywordsInput']);
         }
-        ?>
-        ">
+        ?>">
         <div class="input-group-btn">
         <input type="submit" class="btn  btn-primary" value="search">
         </div>

@@ -160,7 +160,7 @@ for ($sector=1; $sector<=$max; $sector++){
 
 
 <?php
-include "comments.php";
+require_once "comments.php";
 ?>
 
 <section class="bg-dark text-white text-center" id="contact">
