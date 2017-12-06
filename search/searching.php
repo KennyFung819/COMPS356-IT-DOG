@@ -130,10 +130,11 @@ function processHtml(mysqli_stmt $resultSet,$page)
     echo $html;
     return $html;
 }
-function processPages(mysqli_stmt $resultset,int $page){
+function processPages(mysqli_stmt $resultset,$page){
       $keywordsInput=$_SESSION['keywordsInput'];
       $keywordsType=$_SESSION['keywordsType'];
-      $count;$pageHtml='';
+      $count=0;
+      $pageHtml='';
       if ($page>=5) {
           $count=$_SESSION-4;
       } else {
