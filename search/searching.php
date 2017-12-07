@@ -76,7 +76,7 @@ function makeConnection(array $keywords, $keywordsType)
     //
     else {
         echo "connect successfully<br>";
-        $sql="SELECT id,name,img_url,intro,sub_count FROM kol WHERE ";
+        $sql="SELECT id,name,img_url,category,platform,intro,sub_count FROM kol WHERE ";
         foreach ($keywords as $word) {
             $sql=$sql."lower($keywordsType) like lower('%$word%') and ";
         }
@@ -116,7 +116,7 @@ function processHtml(mysqli_stmt $resultSet, $page)
         $page=1;
     }
     $resultSet->data_seek(($page-1)*20);
-    $resultSet->bind_result($kolId, $name, $picturePath, $intro,$subCount);
+    $resultSet->bind_result($kolId, $name, $picturePath, $category,$platform,$intro,$subCount);
     for ($count=0;$count<20;$count++) {
         //add html tags into fetched record
         if (!$resultSet->fetch()) {
@@ -126,10 +126,15 @@ function processHtml(mysqli_stmt $resultSet, $page)
       <div class='row'>
       <div class='col-lg-3 col-md-6 text-center'>
       <a href=../content/index.php?targetKol=$kolId>
-        <img src='../$picturePath' alt='$name &apos; picture' height='200'/>
+        <img src='../$picturePath' alt='$name &apos; picture' width='100%'/>
         <h4>$name</h4></a>
       </div>
-      <div class='col-lg-9 col-md-6 text-center'><p class='text-muted mb-0'>$intro</p></div>
+      <div class='col-lg-9 col-md-6'>
+      <p class='text-muted mb-0'>platform:$platform</p>
+      <p class='text-muted mb-0'>category: $category</p>
+      <p class='text-muted mb-0'>follower: $subCount</p>
+      <p class='text-muted mb-0'>introduction: $intro</p>
+      </div>
       </div>";
     }
     echo $html;

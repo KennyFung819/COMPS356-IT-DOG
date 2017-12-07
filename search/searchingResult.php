@@ -26,6 +26,9 @@
                         <option class="btn" value="platform" <?php if (isset($_SESSION['keywordsType'])&&$_SESSION['keywordsType']=="platform") {
                             echo "selected";
                         } ?>>Platform</option>
+                        <option class="btn" value="category" <?php if (isset($_SESSION['keywordsType'])&&$_SESSION['keywordsType']=="category") {
+                            echo "selected";
+                        } ?>>category</option>
                     </select>
                 </div>
                 <input type="text" class="form-control" name="keywordsInput" placeholder="please enter the keywords you want to search" value="<?php
