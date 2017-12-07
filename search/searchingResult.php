@@ -64,7 +64,6 @@
 </section>
 <section id="resultdetail">
     <div class='container'>
-
         <div id="result">
             <?php if(isset($_SESSION['resultSet'])) echo $_SESSION['resultSet']; ?>
         </div>
@@ -79,6 +78,13 @@
             }
             ?>
         </div>
+    </div>
+</section>
+
+<section id="create">
+    <div class="text-center text-info">
+        <p>There some KOL we are missing? How about you help us create one!</p>
+        <a class="btn btn-primary" href="../submission/index.php">Create</a>
     </div>
 </section>
 

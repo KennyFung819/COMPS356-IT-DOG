@@ -54,6 +54,7 @@
                                     <select class="btn btn-primary" name="keywordsType">
                                         <option class="btn" value="name" selected>Name</option>
                                         <option class="btn" value="platform">Platform</option>
+                                        <option class="btn" value="category">Category</option>
                                     </select>
                                 </div>
                                 <input type="text" class="form-control" name="keywordsInput" value="">
