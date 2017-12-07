@@ -74,6 +74,10 @@ section {
   text-shadow: none;
 }
 
+.twitter-box{
+    max-height:500px;
+}
+
 img::selection {
   color: $white;
   background: transparent;

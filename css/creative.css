@@ -60,6 +60,9 @@ section {
   background: #212529;
   text-shadow: none; }
 
+.twitter-box {
+  max-height: 500px; }
+
 img::selection {
   color: #fff;
   background: transparent; }

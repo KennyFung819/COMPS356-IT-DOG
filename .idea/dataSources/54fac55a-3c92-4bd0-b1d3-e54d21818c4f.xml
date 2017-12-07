@@ -10,209 +10,219 @@
     <schema id="4" parent="1" name="mysql"/>
     <schema id="5" parent="1" name="performance_schema"/>
     <schema id="6" parent="1" name="phpmyadmin"/>
-    <table id="7" parent="2" name="comment"/>
-    <table id="8" parent="2" name="contact"/>
-    <table id="9" parent="2" name="kol"/>
-    <table id="10" parent="2" name="user_data"/>
-    <table id="11" parent="2" name="wiki"/>
-    <column id="12" parent="7" name="id">
+    <schema id="7" parent="1" name="test"/>
+    <table id="8" parent="2" name="comment"/>
+    <table id="9" parent="2" name="contact"/>
+    <table id="10" parent="2" name="kol"/>
+    <table id="11" parent="2" name="user_data"/>
+    <table id="12" parent="2" name="wiki"/>
+    <column id="13" parent="8" name="id">
       <Position>1</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="13" parent="7" name="pid">
+    <column id="14" parent="8" name="pid">
       <Position>2</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="14" parent="7" name="uname">
+    <column id="15" parent="8" name="uname">
       <Position>3</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="15" parent="7" name="comment_text">
+    <column id="16" parent="8" name="comment_text">
       <Position>4</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="7" name="timeofcomment">
+    <column id="17" parent="8" name="timeofcomment">
       <Position>5</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
+      <DataType>datetime|0</DataType>
     </column>
-    <index id="17" parent="7" name="pid">
+    <index id="18" parent="8" name="pid">
       <ColNames>pid</ColNames>
     </index>
-    <index id="18" parent="7" name="uname">
+    <index id="19" parent="8" name="uname">
       <ColNames>uname</ColNames>
     </index>
-    <key id="19" parent="7" name="PRIMARY">
+    <key id="20" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="20" parent="7" name="comment_location">
+    <foreign-key id="21" parent="8" name="comment_location">
       <ColNames>pid</ColNames>
       <RefSchemaName>project</RefSchemaName>
       <RefTableName>kol</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="21" parent="7" name="comment_user">
+    <foreign-key id="22" parent="8" name="comment_user">
       <ColNames>uname</ColNames>
       <RefSchemaName>project</RefSchemaName>
       <RefTableName>user_data</RefTableName>
       <RefColNames>name</RefColNames>
     </foreign-key>
-    <column id="22" parent="8" name="id">
+    <column id="23" parent="9" name="id">
       <Position>1</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="23" parent="8" name="youtube">
+    <column id="24" parent="9" name="youtube">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="24" parent="8" name="twitch">
+    <column id="25" parent="9" name="twitch">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="25" parent="8" name="twitter">
+    <column id="26" parent="9" name="twitter">
       <Position>4</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="26" parent="8" name="instagram">
+    <column id="27" parent="9" name="instagram">
       <Position>5</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="27" parent="8" name="facebook">
+    <column id="28" parent="9" name="facebook">
       <Position>6</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="28" parent="8" name="email">
+    <column id="29" parent="9" name="email">
       <Position>7</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <key id="29" parent="8" name="PRIMARY">
+    <key id="30" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="30" parent="8" name="kol_contact">
+    <foreign-key id="31" parent="9" name="kol_contact">
       <ColNames>id</ColNames>
       <RefSchemaName>project</RefSchemaName>
       <RefTableName>kol</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="31" parent="9" name="id">
+    <column id="32" parent="10" name="id">
       <Position>1</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="32" parent="9" name="name">
+    <column id="33" parent="10" name="name">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="9" name="gender">
+    <column id="34" parent="10" name="gender">
       <Position>3</Position>
       <DataType>varchar(8)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="9" name="platform">
+    <column id="35" parent="10" name="platform">
       <Position>4</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="9" name="follower">
+    <column id="36" parent="10" name="follower">
       <Position>5</Position>
       <DataType>int(10) unsigned|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="36" parent="9" name="category">
+    <column id="37" parent="10" name="sub_count">
       <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="38" parent="10" name="category">
+      <Position>7</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="9" name="intro">
-      <Position>7</Position>
+    <column id="39" parent="10" name="intro">
+      <Position>8</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="38" parent="9" name="img_folder">
-      <Position>8</Position>
+    <column id="40" parent="10" name="img_url">
+      <Position>9</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="39" parent="9" name="PRIMARY">
+    <column id="41" parent="10" name="video_url">
+      <Position>10</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="42" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="40" parent="10" name="uid">
+    <column id="43" parent="11" name="uid">
       <Position>1</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="41" parent="10" name="name">
+    <column id="44" parent="11" name="name">
       <Position>2</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="42" parent="10" name="password">
+    <column id="45" parent="11" name="password">
       <Position>3</Position>
       <DataType>varchar(24)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="43" parent="10" name="name">
+    <index id="46" parent="11" name="name">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="44" parent="10" name="name_2">
-      <ColNames>name</ColNames>
-    </index>
-    <key id="45" parent="10" name="PRIMARY">
+    <key id="47" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uid</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="46" parent="10" name="name">
+    <key id="48" parent="11" name="name">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>name</UnderlyingIndexName>
     </key>
-    <column id="47" parent="11" name="pid">
+    <column id="49" parent="12" name="pid">
       <Position>1</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="48" parent="11" name="id">
+    <column id="50" parent="12" name="id">
       <Position>2</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="49" parent="11" name="load_order">
+    <column id="51" parent="12" name="load_order">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="11" name="subtitle">
+    <column id="52" parent="12" name="subtitle">
       <Position>4</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="51" parent="11" name="content">
+    <column id="53" parent="12" name="content">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="52" parent="11" name="pid">
+    <index id="54" parent="12" name="pid">
       <ColNames>pid</ColNames>
     </index>
-    <key id="53" parent="11" name="PRIMARY">
+    <key id="55" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="54" parent="11" name="kol_info">
+    <foreign-key id="56" parent="12" name="kol_info">
       <ColNames>pid</ColNames>
       <RefSchemaName>project</RefSchemaName>
       <RefTableName>kol</RefTableName>

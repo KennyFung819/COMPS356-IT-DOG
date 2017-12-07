@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             //if the password is correct, start a session and save the username to it
                             session_start();
                             $_SESSION['username'] = $username;      
-                            header("location: ../main/index.php");
+                            header("location: success_login.php");
 						}
 						else{
                             //tell the user that the username and password do not match
