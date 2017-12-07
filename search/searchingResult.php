@@ -39,20 +39,29 @@
       </div>
         </form>
   </div>
+      <div class="container">
+          <div class="row">
+              <?php if(isset($_SESSION['pages'])){
+                  $sort1="searching.php?keywords=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=1&sort=1";
+                  $sort2="searching.php?keywords=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=1&sort=2";
+                  ?>
+                  <div class="btn-group">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Sort by
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a href='<?php echo $sort1?>'>By name</a>
+                          <div class="dropdown-divider"></div>
+                          <a href="<?php echo $sort2?>">By followers</a>
+                      </div>
+                  </div>
+              <?php }?>
+          </div>
+      </div>
   </section>
   <section id="resultdetail">
 <div class='container'>
-	<?php if(isset($_SESSION['pages'])){
-		$sort1="searching.php?keywords=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=1&sort=1";
-		$sort2="searching.php?keywords=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=1&sort=2";
-		?>
-		<div>
-			<ul>
-				<li><a href='<?php echo $sort1?>'>sort by name</a></li>
-				<li><a href="<?php echo $sort1?>">sort by follower</a></li>
-			</ul>
-		</div>
-	<?php }?>
+
 <div id="result">
 	<?php if(isset($_SESSION['resultSet'])) echo $_SESSION['resultSet']; ?>
 </div>

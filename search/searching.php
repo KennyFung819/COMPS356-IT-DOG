@@ -81,6 +81,15 @@ function makeConnection(Array $keywords, $keywordsType)
             $sql=$sql."lower($keywordsType) like lower('%$word%') and ";
         }
         $sql=$sql." 1=1";
+<<<<<<< HEAD
+=======
+        if($_GET['sort']==2)
+          $sql=$sql." ORDER BY sub_count DESC";
+          else {
+            $_GET['sort']=1;
+            $sql=$sql." ORDER BY name";
+          }
+>>>>>>> master
         echo $sql;
         $stmt=$conn->prepare($sql);
         $stmt->execute();
@@ -159,5 +168,11 @@ function processPages(mysqli_stmt $resultset, int $page)
     }
     $pageHtml=$pageHtml."</ul>";
     return $pageHtml;
+
+
+}
+function alert($msg)
+{
+    echo "<script type='text/javascript'>alert('$msg');</script>";
 }
 ?>
