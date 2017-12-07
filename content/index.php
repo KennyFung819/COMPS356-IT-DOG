@@ -105,7 +105,7 @@ for ($sector=1; $sector<=$max; $sector++){
         </div>
         <hr>
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="//www.youtube.com/embed/gRyPjRrjS34" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="//<?php $target->getVideo() ?>" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 </section>
@@ -124,7 +124,7 @@ for ($sector=1; $sector<=$max; $sector++){
                data-chrome="nofooter"
                data-link-color="#820bbb"
                data-border-color="#a80000"
-               href="https://twitter.com/pewdiepie">Tweets by @<?php $target->getName() ?></a>
+               href="https://<?php echo $targetContact->getTwitter()?>">Tweets by <?php $target->getName() ?></a>
         </div>
     </div>
 </section>
@@ -173,7 +173,7 @@ require_once "comments.php";
             if($targetContact->getFacebook()!=null){ ?>
             <div class="col-lg-3 col-md-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    <a href="#<?php echo $targetContact->getFacebook() ?>"><i class="fa fa-4x  fa-facebook-official text-primary mb-3 sr-icons"></i>
+                    <a href="<?php echo $targetContact->getFacebook() ?>"><i class="fa fa-4x  fa-facebook-official text-primary mb-3 sr-icons"></i>
                 </div>
             </div>
             <?php }?>
