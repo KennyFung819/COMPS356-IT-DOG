@@ -1,9 +1,9 @@
 <?php
 /**
- *this file will connect to database every time when it is accessed by Users
- *it will generate resultset with no more than 20 records at once and make a redirection to the searchingresult.php
- *it will also generate page list for users to read another 20 records.
- */
+*this file will connect to database every time when it is accessed by Users
+*it will generate resultset with no more than 20 records at once and make a redirection to the searchingresult.php
+*it will also generate page list for users to read another 20 records.
+*/
 
 session_start();
 if (!isset($_GET['keywordsInput'])||!isset($_GET['keywordsType'])) {
@@ -12,7 +12,7 @@ if (!isset($_GET['keywordsInput'])||!isset($_GET['keywordsType'])) {
     die;
 }
 
-//set the $_SESSION variables
+  //set the $_SESSION variables
 if (isset($_GET['page'])) {
     $_SESSION['page']=(int)$_GET['page'];
 } else {
@@ -40,9 +40,9 @@ if ($_SESSION['resultBuffer']!=null) {
 header("Location:searchingResult.php?keywordsInput=".$_SESSION['keywordsInput']."&keywordsType=".$_SESSION['keywordsType']."&page=".$_SESSION['page']);
 
 /**
- *this function is used to split input string into separate words by regular expression
- *assume that the key words are separated by spaces(one or more)
- */
+*this function is used to split input string into separate words by regular expression
+*assume that the key words are separated by spaces(one or more)
+*/
 function processString($keywords)
 {
     $pattern="/[\s]+/";
@@ -52,17 +52,17 @@ function processString($keywords)
     }
     $separateWords=preg_split($pattern, $keywords);
     foreach ($separateWords as $word) {
-        echo $word."<br>";
+      echo $word."<br>";
     }
     return $separateWords;
 }
 
 /**
- *make a connection and a query to database and return the result set
- */
-function makeConnection(array $keywords, $keywordsType)
+*make a connection and a query to database and return the result set
+*/
+function makeConnection(Array $keywords, $keywordsType)
 {
-    echo "making connection<br>";
+  echo "making connection<br>";
     $host='localhost';
     $user='root';
     $password='';
@@ -70,30 +70,25 @@ function makeConnection(array $keywords, $keywordsType)
     $port=3306;
     $conn=new mysqli($host, $user, $password, $database, $port);
     if (mysqli_connect_errno()) {
-        echo "cannot open the connection";
+      echo "cannot open the connection";
         return null;
     }
     //
     else {
-        echo "connect successfully<br>";
-        $sql="SELECT id,name,img_url,intro FROM kol WHERE ";
+      echo "connect successfully<br>";
+        $sql="SELECT id,name,img_folder,intro FROM kol WHERE ";
         foreach ($keywords as $word) {
             $sql=$sql."lower($keywordsType) like lower('%$word%') and ";
         }
         $sql=$sql." 1=1";
-        if($_GET['sort']==2)
-          $sql=$sql." order by follower desc";
-          else {
-            $_GET['sort']=1;
-            $sql=$sql." order by name";
-          }
         echo $sql;
         $stmt=$conn->prepare($sql);
         $stmt->execute();
         $stmt->store_result();
+        //$result=$conn->store_result();
         echo "<br>the num of rows is ".$stmt->num_rows."<br>";
         if ($stmt->num_rows==0) {
-            echo $result->num_rows;
+          echo $result->num_rows;
             return null;
         }
         $conn->close();
@@ -102,12 +97,12 @@ function makeConnection(array $keywords, $keywordsType)
     }
 }
 /**
- *process the result and return string with html tags
- */
-function processHtml(mysqli_stmt $resultSet, $page)
+*process the result and return string with html tags
+*/
+function processHtml(mysqli_stmt $resultSet,$page)
 {
-    echo "entering the processhtml function<br>";
-    echo "the page is ".$page."<br>";
+  echo "entering the processhtml function<br>";
+  echo "the page is ".$page."<br>";
     $html="";
     $temp="";
 
@@ -116,17 +111,16 @@ function processHtml(mysqli_stmt $resultSet, $page)
         $page=1;
     }
     $resultSet->data_seek(($page-1)*20);
-    $resultSet->bind_result($kolId, $name, $picturePath, $intro);
+    $resultSet->bind_result($kolId,$name,$picturePath,$intro);
     for ($count=0;$count<20;$count++) {
         //add html tags into fetched record
-        if (!$resultSet->fetch()) {
-            break;
-        }
+        if(!$resultSet->fetch())
+          break;
         $html=$html."
       <div class='row'>
       <div class='col-lg-3 col-md-6 text-center'>
       <a href=../content/index.php?targetKol=$kolId>
-        <img src='../$picturePath' alt='$name &apos; picture' height='200'/>
+        <img src='../$picturePath/thumbnail.jpg' alt='$name &apos; picture' height='200'/>
         <h4>$name</h4></a>
       </div>
       <div class='col-lg-9 col-md-6 text-center'><p class='text-muted mb-0'>$intro</p></div>
@@ -166,3 +160,4 @@ function processPages(mysqli_stmt $resultset, int $page)
     $pageHtml=$pageHtml."</ul>";
     return $pageHtml;
 }
+?>
