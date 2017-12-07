@@ -82,10 +82,10 @@ function makeConnection(array $keywords, $keywordsType)
         }
         $sql=$sql." 1=1";
         if($_GET['sort']==2)
-          $sql=$sql." order by follower desc";
+          $sql=$sql." ORDER BY sub_count DESC";
           else {
             $_GET['sort']=1;
-            $sql=$sql." order by name";
+            $sql=$sql." ORDER BY name";
           }
         echo $sql;
         $stmt=$conn->prepare($sql);
@@ -165,4 +165,10 @@ function processPages(mysqli_stmt $resultset, int $page)
     }
     $pageHtml=$pageHtml."</ul>";
     return $pageHtml;
+
+
+}
+function alert($msg)
+{
+    echo "<script type='text/javascript'>alert('$msg');</script>";
 }
