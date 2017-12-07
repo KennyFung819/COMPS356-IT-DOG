@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
  <html>
-<section class="bg-light text-dark" id="comment">
+<section class="bg-dark text-white" id="comment">
     <div class="container">
         <?php
         $conn=connectDB();
@@ -56,10 +56,9 @@
          #GET THE FORM DATA
          $name = $_SESSION['username'];#user name from session
          $pid=$_GET['targetKol'];
-         $comment = str_replace("'", "&apos", trim($_POST["userComment"]));#replace single quotes
-         alert("$comment");
-         $insert="INSERT INTO comment(id,pid,uname,comment_text,timeofcomment) VALUES( NULL,$pid,'$name','$comment',now())";
+         $comment = str_replace("'", "&apos;", trim($_POST["userComment"]));#replace single quotes
 
+         $insert="INSERT INTO comment(id,pid,uname,comment_text,timeofcomment) VALUES( NULL,$pid,'$name','$comment',now())";
          #WRITE DOWN COMMENTS#
          if ($mysql->query($insert) === TRUE) {
              alert("comment succeeded!");
